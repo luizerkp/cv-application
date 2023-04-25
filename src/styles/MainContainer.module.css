@@ -1,0 +1,13 @@
+.main-container {
+  flex: 1 0 auto;
+  background-color: rgb(247, 240, 240);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container img {
+  width: 200px;
+  height: auto;
+}
