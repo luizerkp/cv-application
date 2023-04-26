@@ -5,7 +5,8 @@ class Header extends Component {
     render() {
         return (
             <header className= {styles.header}>
-                <h1>CV App</h1>
+                <h1>Resume Creator</h1>
+                <button>Edit</button>
             </header>
         );
     }
