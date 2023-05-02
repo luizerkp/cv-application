@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import styles from '../styles/MainContainer.module.css';
-import imgLogo from '../imgs/logo.svg';
+// import imgLogo from '../imgs/logo.svg';
+import ResumeContainer from './ResumeContainer';
 
 class MainContainer extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class MainContainer extends Component {
     render() {
         return (
             <div className={styles['main-container']}>
-                <img src={imgLogo} alt='logo' />
+                <ResumeContainer></ResumeContainer>
             </div>
         );
     }

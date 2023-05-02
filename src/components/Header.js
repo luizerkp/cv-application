@@ -6,7 +6,6 @@ class Header extends Component {
         return (
             <header className= {styles.header}>
                 <h1>Resume Creator</h1>
-                <button>Edit</button>
             </header>
         );
     }
