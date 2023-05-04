@@ -1,11 +1,13 @@
 import { Component } from 'react';
 import styles from '../styles/Header.module.css';
+import logo from '../imgs/cv-logo.png';
 
 class Header extends Component {
     render() {
         return (
             <header className= {styles.header}>
-                <h1>Resume Creator</h1>
+              <img className= {styles.logo} src={logo} alt="Logo that reads CV" />
+              <h1>CV Creator</h1>        
             </header>
         );
     }
