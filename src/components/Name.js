@@ -3,11 +3,13 @@ import { Component } from 'react';
 class Name extends Component {
     constructor(props) {
         super(props);
-        this.state = "John Smith";
+        this.state = {
+          fullName: "John Smith"
+        };
     }
     render() {
         return (
-          <h1>{this.state}</h1>
+          <h1>{this.state.fullName}</h1>
         );
     }
 }

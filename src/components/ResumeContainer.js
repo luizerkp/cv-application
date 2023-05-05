@@ -3,6 +3,9 @@ import { Component } from 'react';
 import Name from './Name';
 import JobTitle from './JobTitle';
 import ResumeSummary from './ResumeSummary';
+import ContactInfo from './ContactInfo';
+import Skills from './Skills';
+import Interests from './Interests';
 
 class ResumeContainer extends Component {
     render() {
@@ -19,13 +22,16 @@ class ResumeContainer extends Component {
                         </div>
                       </div>
                         <div className={styles['resume-contact-info']}>
-                          <h1 className={styles['resume-section-title-left']}>Contact Info</h1>
+                          <h1 className={styles['resume-section-title-left']}>Contact</h1>
+                          <ContactInfo />
                         </div>
                         <div className={styles['resume-skills']}>
                           <h1 className={styles['resume-section-title-left']}>Skills</h1>
+                          <Skills />
                         </div>
                         <div className={styles['resume-interests']}>
                           <h1 className={styles['resume-section-title-left']}>Interests</h1>
+                          <Interests />
                         </div>
                     </div>
                     <div className={styles['resume-right']}>
