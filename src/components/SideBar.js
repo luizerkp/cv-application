@@ -19,7 +19,7 @@ class SideBar extends Component {
   render() {
     return (
       <nav className = {styles.sidebar}>
-        <div className={styles["sidebar-item"]} datatype='header'>
+        <div className={styles["sidebar-item"]} datatype='header' data-active>
         <Icon path={mdiAccountDetails} size={defaultIconSize} />
         <p>Header</p>
         </div>
@@ -39,7 +39,7 @@ class SideBar extends Component {
         <Icon path={mdiViewGridPlusOutline} size={defaultIconSize} />
           Skills
         </div>
-        <div className={styles["sidebar-item"]} datatype='skills'>
+        <div className={styles["sidebar-item"]} datatype='credentials'>
           <Icon path={mdiCheckDecagram } size={defaultIconSize} />
           <p>Credentials</p>
         </div>
