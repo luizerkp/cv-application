@@ -19,39 +19,39 @@ class ContactInfo extends Component {
     return (
       <div className = {styles['contact-info-div']}>
         <p>
-          <span className={`material-icons-outlined ${styles['contact-icon']}`}>
+          {/* <span className={`material-icons-outlined ${styles['contact-icon']}`}>
             location_on
-          </span>
+          </span> */}
           {this.state.adress}
         </p>
         <p>
-          <span className={`material-icons-outlined ${styles['contact-icon']}`}>
+          {/* <span className={`material-icons-outlined ${styles['contact-icon']}`}>
             phone
-          </span>
+          </span> */}
           {this.state.phone}
         </p>
         <p>
-          <span className={`material-icons-outlined ${styles['contact-icon']}`}>
+          {/* <span className={`material-icons-outlined ${styles['contact-icon']}`}>
             email
-          </span>
+          </span> */}
           {this.state.email}
         </p>
         <p>
-          <span className={`material-icons-outlined ${styles['contact-icon']}`}>
+          {/* <span className={`material-icons-outlined ${styles['contact-icon']}`}>
             language
-          </span>
+          </span> */}
           {this.state.linkedin}
         </p>
         <p>
-          <span className={`material-icons-outlined ${styles['contact-icon']}`}>
+          {/* <span className={`material-icons-outlined ${styles['contact-icon']}`}>
             language
-          </span>
+          </span> */}
           {this.state.github}
         </p>
         <p>
-          <span className={`material-icons-outlined ${styles['contact-icon']}`}>
+          {/* <span className={`material-icons-outlined ${styles['contact-icon']}`}>
             language
-          </span>
+          </span> */}
           {this.state.website}
         </p>
       </div>

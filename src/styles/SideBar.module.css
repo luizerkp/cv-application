@@ -1,0 +1,21 @@
+ .sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  font-size: 1.25rem;
+  font-weight: bolder;
+ }
+
+ .sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .5rem;
+  cursor: pointer;
+  border-radius: 1rem;
+ }
+
+  .sidebar-item:hover {
+    background-color: rgba(0, 0, 0, .2)
+  }
+ 

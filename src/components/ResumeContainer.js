@@ -7,7 +7,14 @@ import ContactInfo from './ContactInfo';
 import Skills from './Skills';
 import Interests from './Interests';
 
+
+// to do Refactor so that it imports templates that will consume the data from the different resume components
 class ResumeContainer extends Component {
+    constructor(props) {
+        super(props);
+        // will use thsi to keep track of which template is being used
+        this.state = {};
+    }
     render() {
         return (
             <div className={styles['resume-container']}>
