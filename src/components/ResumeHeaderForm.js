@@ -8,9 +8,9 @@ class ResumeHeaderForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          fullName: "",
-          title: "",
-          aboutMe: "",
+          fullName: props.header.fullName || "",
+          title: props.header.title || "",
+          aboutMe: props.header.aboutMe || "",
         };
     }
     handleInputChange = (event) => {
@@ -22,16 +22,11 @@ class ResumeHeaderForm extends Component {
       const { fullName, title, aboutMe } = this.state;
       const formData = { fullName, title, aboutMe };
       this.props.onSubmit(formData);
-      this.setState({
-        fullName: "",
-        title: "",
-        aboutMe: "",
-      });
     };
     render() {
       const { fullName, title, aboutMe } = this.state;
         return (
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <div>
               <label htmlFor="fullName">Full Name:</label>
               <input
@@ -56,7 +51,7 @@ class ResumeHeaderForm extends Component {
             </div>
             <div>
               <label htmlFor="aboutMe">About Me:</label>
-              <input
+              <textarea
                 type="text"
                 id="aboutMe"
                 name="aboutMe"
@@ -65,7 +60,7 @@ class ResumeHeaderForm extends Component {
                 onChange={this.handleInputChange}
               />
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit">Continue</button>
           </form>
         );
     }

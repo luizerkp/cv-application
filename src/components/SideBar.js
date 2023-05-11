@@ -13,26 +13,18 @@ const defaultIconSize =1.5;
 
 class SideBar extends Component {
   handleClick = (formName) => {
-      const {activeForm, handleFormClick} = this.props;
+      const {activeForm, handleFormClick, handleActiveForm} = this.props;
       if (activeForm === formName) {
         return;
       }
 
       handleFormClick(formName);
-      
-      const activeElement = document.querySelector('[data-active="true"]');
-      if (activeElement) {
-        activeElement.removeAttribute('data-active');
-      }
-      const selectedElement = document.querySelector(`[datatype="${formName}"]`);
-      if (selectedElement) {
-        selectedElement.setAttribute('data-active', true);
-      }
-    };
+      handleActiveForm(formName);
+  };
   render() {
     return (
       <nav className = {styles.sidebar}>
-        <div className={styles["sidebar-item"]} datatype='header'
+        <div className={styles["sidebar-item"]} datatype='header' data-active
           onClick={() => {
             this.handleClick('header')
           }
@@ -40,7 +32,7 @@ class SideBar extends Component {
         <Icon path={mdiAccountDetails} size={defaultIconSize} />
         <p>Header</p>
         </div>
-        <div className={styles["sidebar-item"]} datatype='contact 'data-active onClick={
+        <div className={styles["sidebar-item"]} datatype='contact' onClick={
           () => {
             this.handleClick('contact')
           }

@@ -14,12 +14,12 @@ class ContactForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: "",
-      phone: "",
-      email: "",
-      linkedin: "",
-      github: "",
-      website: "",
+      address: props.contact.address || "",
+      phone: props.contact.phone || "",
+      email: props.contact.email || "",
+      linkedin: props.contact.linkedin || "",
+      github: props.contact.github || "",
+      website: props.contact.website || "",
     };
   }
 
@@ -33,14 +33,6 @@ class ContactForm extends Component {
     const { address, phone, email, linkedin, github, website } = this.state;
     const formData = { address, phone, email, linkedin, github, website };
     this.props.onSubmit(formData);
-    this.setState({ 
-      address: '', 
-      phone: '', 
-      email: '', 
-      linkedin: '', 
-      github: '', 
-      website: '', 
-    });
   };
 
   render() {
@@ -114,7 +106,7 @@ class ContactForm extends Component {
             onChange={this.handleInputChange}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Continue</button>
       </form>
     );
   }
