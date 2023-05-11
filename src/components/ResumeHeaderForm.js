@@ -21,7 +21,8 @@ class ResumeHeaderForm extends Component {
       event.preventDefault();
       const { fullName, title, aboutMe } = this.state;
       const formData = { fullName, title, aboutMe };
-      this.props.onSubmit(formData);
+      const newResumeHeader = JSON.stringify(formData) !== JSON.stringify(this.props.header);
+      newResumeHeader && this.props.onSubmit(formData);
     };
     render() {
       const { fullName, title, aboutMe } = this.state;

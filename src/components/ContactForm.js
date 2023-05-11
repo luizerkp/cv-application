@@ -32,7 +32,8 @@ class ContactForm extends Component {
     event.preventDefault();
     const { address, phone, email, linkedin, github, website } = this.state;
     const formData = { address, phone, email, linkedin, github, website };
-    this.props.onSubmit(formData);
+    const newContactInfo = JSON.stringify(formData) !== JSON.stringify(this.props.contact);
+    newContactInfo && this.props.onSubmit(formData);
   };
 
   render() {
