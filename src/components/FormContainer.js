@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-// import styles from '../styles/FormContainer.module.css';
+import styles from '../styles/FormContainer.module.css';
 import ContactForm from './ContactForm';
 import ResumeHeaderForm from './ResumeHeaderForm';
 import SkillsForm from './SkillsForm';
 import CredentialsForm from './CredentialsForm';
+import EducationForm from './EducationForm';
+import ExperienceForm from './ExperienceForm';
 
 class FormContainer extends Component {
   constructor(props) {
@@ -24,8 +26,24 @@ class FormContainer extends Component {
           github: "",
           website: "",
         },
-        experience: {},
-        education: {},
+        experience: [
+          {
+            company: "",
+            title: "",
+            startDate: "",
+            endDate: "",
+            description: "",
+          },
+        ],
+        education: [
+          {
+            school: "",
+            degree: "",
+            startDate: "",
+            endDate: "",
+            graduated: false,
+          },
+        ],
         skills: [''],
         credentials: [''],
       },
@@ -36,21 +54,23 @@ class FormContainer extends Component {
     this.setState({ activeForm: formName });
   };
 
+  checkNewData= (formData, formName) => {
+    return JSON.stringify(formData) !== JSON.stringify(this.state.masterObject[formName]);
+  };
+
   handleFormSubmit = (formData, formName) => {
-    console.log(formData);
-    console.log(formName);
-    this.setState((prevState) => ({
+    this.checkNewData(formData, formName) && this.setState((prevState) => ({
       masterObject: {
         ...prevState.masterObject,
         [formName]: formData,
       },
     }),
-    () => {
-      console.log(this.state.masterObject);
-      this.props.handleNextFormClick(formName);
-    } 
-    
+      () => {
+        console.log(this.state.masterObject);
+      } 
     );
+
+    this.props.handleNextFormClick(formName);
   };
 
   render() {
@@ -63,15 +83,21 @@ class FormContainer extends Component {
         contact ={this.state.masterObject.contact} 
         onSubmit={(formData) => this.handleFormSubmit(formData, 'contact')} 
       />,
+      education: () => <EducationForm
+        education={this.state.masterObject.education}
+        onSubmit={(formData) => this.handleFormSubmit(formData, 'education')} />,
+      experience: () => <ExperienceForm
+        experience={this.state.masterObject.experience}
+        onSubmit={(formData) => this.handleFormSubmit(formData, 'experience')} />,
+      skills: () =>  <SkillsForm
+        skills={this.state.masterObject.skills} 
+        onSubmit={(formData) => this.handleFormSubmit(formData, 'skills')} />,      
       credentials:  () => <CredentialsForm
         credentials={this.state.masterObject.credentials}
         onSubmit={(formData) => this.handleFormSubmit(formData, 'credentials')} />, 
-      skills: () =>  <SkillsForm
-        skills={this.state.masterObject.skills} 
-        onSubmit={(formData) => this.handleFormSubmit(formData, 'skills')} />,
     };
     return (
-      <div>
+      <div className={styles['form-container-div']}>
         {forms[activeForm] && forms[activeForm]()}
       </div>
     );

@@ -2,12 +2,14 @@ import { Component } from 'react';
 import styles from '../styles/SkillsForm.module.css';
 // import styled from 'styled-components';
 
+const emptySkills = [''];
+
 class SkillsForm extends Component {
   constructor(props) {
     super(props);
     // console.log(props.skills);
     this.state = {
-      skills: props.skills || [''],
+      skills: props.skills || emptySkills,
     };
   };
 
@@ -26,8 +28,7 @@ class SkillsForm extends Component {
     event.preventDefault();
     const { skills } = this.state;
     const formData = skills.filter((skill) => skill !== '');
-    const newSkills = JSON.stringify(formData) !== JSON.stringify(this.props.skills);
-    formData.length > 0 && newSkills && this.props.onSubmit(formData);
+    formData.length > 0 ? this.props.onSubmit(formData) : this.props.onSubmit(emptySkills);
   };
 
   addSkill = () => {

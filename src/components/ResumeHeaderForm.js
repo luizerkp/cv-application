@@ -1,4 +1,5 @@
 import { Component } from 'react';
+
 const sampleResumeHeader = {
   fullName: "Your Name",
   title: "Your Title",
@@ -21,9 +22,9 @@ class ResumeHeaderForm extends Component {
       event.preventDefault();
       const { fullName, title, aboutMe } = this.state;
       const formData = { fullName, title, aboutMe };
-      const newResumeHeader = JSON.stringify(formData) !== JSON.stringify(this.props.header);
-      newResumeHeader && this.props.onSubmit(formData);
+      this.props.onSubmit(formData);
     };
+
     render() {
       const { fullName, title, aboutMe } = this.state;
         return (

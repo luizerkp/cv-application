@@ -2,12 +2,14 @@ import { Component } from 'react';
 import styles from '../styles/CredentialsForm.module.css';
 // import styled from 'styled-components';
 
+const emptyCredentials = [''];
+
 class CredentialsForm extends Component {
   constructor(props) {
     super(props);
     // console.log(props.Credentials);
     this.state = {
-      credentials: props.credentials || [''],
+      credentials: props.credentials || emptyCredentials,
     };
   };
 
@@ -26,8 +28,8 @@ class CredentialsForm extends Component {
     event.preventDefault();
     const { credentials } = this.state;
     const formData = credentials.filter((credential) => credential !== '');
-    const newCredentials = JSON.stringify(formData) !== JSON.stringify(this.props.credentials);
-    formData.length > 0 && newCredentials && this.props.onSubmit(formData);
+
+    formData.length > 0 ? this.props.onSubmit(formData) : this.props.onSubmit(emptyCredentials);
   };
 
   addCredential = () => {
