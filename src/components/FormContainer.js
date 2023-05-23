@@ -7,98 +7,42 @@ import CredentialsForm from './CredentialsForm';
 import EducationForm from './EducationForm';
 import ExperienceForm from './ExperienceForm';
 
+// renders the form that is currently active
 class FormContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeForm: null,
-      masterObject: {
-        header: {
-          fullName: '',
-          title: '',
-          aboutMe: '',
-        },
-        contact: {
-          address: "",
-          phone: "",
-          email: "",
-          linkedin: "",
-          github: "",
-          website: "",
-        },
-        experience: [
-          {
-            company: "",
-            title: "",
-            startDate: "",
-            endDate: "",
-            description: "",
-          },
-        ],
-        education: [
-          {
-            school: "",
-            degree: "",
-            startDate: "",
-            endDate: "",
-            graduated: false,
-          },
-        ],
-        skills: [''],
-        credentials: [''],
-      },
-    };
-  }
-
-  handleFormClick = (formName) => {
-    this.setState({ activeForm: formName });
-  };
-
-  checkNewData= (formData, formName) => {
-    return JSON.stringify(formData) !== JSON.stringify(this.state.masterObject[formName]);
-  };
-
-  handleFormSubmit = (formData, formName) => {
-    this.checkNewData(formData, formName) && this.setState((prevState) => ({
-      masterObject: {
-        ...prevState.masterObject,
-        [formName]: formData,
-      },
-    }),
-      () => {
-        console.log(this.state.masterObject);
-      } 
-    );
-
-    this.props.handleNextFormClick(formName);
-  };
-
   render() {
-    const { activeForm } = this.props;
+    // default activeForm is header, masterObject is empty, and handleFormSubmit handles the form submit on the parent component
+    const { activeForm, handleFormSubmit, masterObject } = this.props;
+
+    // error message to display if the form is not in the forms object
+    const erroMessage = 'Something went wrong. Please try again later. If the problem persists, please contact us.';
+
+    // forms is an object that contains all the forms that can be rendered
     const forms = {      
       header: () => <ResumeHeaderForm
-        header={this.state.masterObject.header}
-        onSubmit={(formData) => this.handleFormSubmit(formData, 'header')} />,
+        header={masterObject.header}
+        onSubmit={(formData) => handleFormSubmit(formData, 'header')} />,
       contact: () => <ContactForm
-        contact ={this.state.masterObject.contact} 
-        onSubmit={(formData) => this.handleFormSubmit(formData, 'contact')} 
+        contact ={masterObject.contact} 
+        onSubmit={(formData) => handleFormSubmit(formData, 'contact')} 
       />,
       education: () => <EducationForm
-        education={this.state.masterObject.education}
-        onSubmit={(formData) => this.handleFormSubmit(formData, 'education')} />,
+        education={masterObject.education}
+        onSubmit={(formData) => handleFormSubmit(formData, 'education')} />,
       experience: () => <ExperienceForm
-        experience={this.state.masterObject.experience}
-        onSubmit={(formData) => this.handleFormSubmit(formData, 'experience')} />,
+        experience={masterObject.experience}
+        onSubmit={(formData) => handleFormSubmit(formData, 'experience')} />,
       skills: () =>  <SkillsForm
-        skills={this.state.masterObject.skills} 
-        onSubmit={(formData) => this.handleFormSubmit(formData, 'skills')} />,      
+        skills={masterObject.skills} 
+        onSubmit={(formData) => handleFormSubmit(formData, 'skills')} />,      
       credentials:  () => <CredentialsForm
-        credentials={this.state.masterObject.credentials}
-        onSubmit={(formData) => this.handleFormSubmit(formData, 'credentials')} />, 
+        credentials={masterObject.credentials}
+        onSubmit={(formData) => handleFormSubmit(formData, 'credentials')} />, 
     };
+
     return (
+      // if the activeForm is in the forms object, render the form, otherwise render nothing
       <div className={styles['form-container-div']}>
-        {forms[activeForm] && forms[activeForm]()}
+        {forms[activeForm] ? forms[activeForm]() : <h1 className= {styles['error-msg']}>{erroMessage}</h1>}
       </div>
     );
   }

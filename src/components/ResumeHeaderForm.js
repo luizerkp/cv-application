@@ -3,7 +3,7 @@ import { Component } from 'react';
 const sampleResumeHeader = {
   fullName: "Your Name",
   title: "Your Title",
-  aboutMe: "About your professional Achievements",
+  aboutMe: "About yourself and your professional Achievements",
 };
 class ResumeHeaderForm extends Component {
     constructor(props) {

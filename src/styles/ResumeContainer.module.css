@@ -1,72 +1,10 @@
 .resume-container {
-  flex-shrink: 1;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  box-shadow: 0px -25px 20px -20px rgba(0, 0, 0, 0.45), 25px 0 20px -20px rgba(0, 0, 0, 0.45), 0px 25px 20px -20px rgba(0, 0, 0, 0.45), -25px 0 20px -20px rgba(0, 0, 0, 0.45);
-  font-size: 1rem;
-  font-family: sans-serif;
-  margin: 1rem;
-}
-
-.resume-header {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   justify-content: center;
+  align-items: center;
   padding: 1rem;
-  color: white;
-  opacity: .8;
-  gap: 1rem;
-}
-
-.resume-name > h1 {
-  font-size: 2rem;
-  margin: 0;
-  padding: 0;
-}
-
-.resume-job-title > h2 {
-  font-size: 1.2rem;
-  margin: 0;
-}
-
-.resume-body {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  height: 100%;
-  gap: 1rem;
-}
-
-.resume-section-title-left, .resume-section-title-right {
-  font-size: 1.25rem;
-  margin: 0;
-  padding: .15rem 0;
-}
-
-.resume-section-title-right {
-  background-color: rgb(9, 31, 66);
-  color: #F7C10C;
-  padding: .2rem 0.2rem 0.2rem 1rem;
-}
-
-.resume-section-title-left {
-  background-color: #F7C10C;
-  color: rgb(9, 31, 66);
-  border: 5px double rgb(9, 31, 66);
-}
-
-.resume-left {
-  display: grid;
-  grid-template-rows: minmax(150px, auto) auto 1fr minmax(150px, auto);
-  justify-content: center;
-  text-align: center;
-  word-wrap: break-word;
-  background-color: rgb(9, 31, 66);
-  color: white;
-}
-
-.resume-right {
-  display: grid;
-  grid-template-rows: minmax(150px, auto) 1fr minmax(150px, auto);
+  border-left: 2px solid rgb(126, 124, 124);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: -25px 0 20px -20px rgba(0, 0, 0, 0.45);
 }
