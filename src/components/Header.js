@@ -14,11 +14,9 @@ class Header extends Component {
   }
   handleModalOpen = () => {
     this.setState({ modalOpen: true });
-    // document.body.classList.add('modal-open');
   };
   handleModalClose = () => {
     this.setState({ modalOpen: false });
-    // document.body.classList.remove('modal-open');
   };
     render() {
       const { currentTemplate, updateCurrentTemplate } = this.props;
