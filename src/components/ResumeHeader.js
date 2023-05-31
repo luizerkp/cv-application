@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-class ResumeHeaderInfo extends Component {
+class ResumeHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,4 +39,4 @@ class ResumeHeaderInfo extends Component {
   }
 }
 
-export default ResumeHeaderInfo;
+export default ResumeHeader;

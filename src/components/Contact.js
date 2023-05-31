@@ -3,7 +3,7 @@ import Icon from '@mdi/react';
 import { mdiMapMarkerOutline, mdiCellphone, mdiEmailOutline, mdiLinkedin, mdiGithub, mdiWeb} from '@mdi/js';
 import styles from '../styles/ResumeContactInfo.module.css';
 
-class ResumeHeaderInfo extends Component {
+class Contact extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -67,4 +67,4 @@ class ResumeHeaderInfo extends Component {
   }
 }
 
-export default ResumeHeaderInfo;
+export default Contact;

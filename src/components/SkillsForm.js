@@ -3,6 +3,29 @@ import styles from '../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
 import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
+const skillsPlaceholder = [
+  "Leadership",
+  "Communication",
+  "Problem-solving",
+  "Teamwork",
+  "Adaptability",
+  "Time management",
+  "Critical thinking",
+  "Creativity",
+  "Collaboration",
+  "Decision-making",
+  "Analytical skills",
+  "Project management",
+  "Technical skills",
+  "Customer service",
+  "Sales and negotiation",
+  "Data analysis",
+  "Research skills",
+  "Presentation skills",
+  "Attention to detail",
+  "Multilingualism"
+];
+
 
 class SkillsForm extends Component {
   constructor(props) {
@@ -47,6 +70,10 @@ class SkillsForm extends Component {
     });
   };
 
+  getRandomPlaceholder() {
+    return skillsPlaceholder[Math.floor(Math.random() * skillsPlaceholder.length)];
+  }
+
   render() {
     const { skills } = this.state;
     // console.log(Array.isArray(skills));
@@ -61,7 +88,7 @@ class SkillsForm extends Component {
                 id={`Skill#${idx}`}
                 name={`Skill#${idx}`}
                 value={skill}
-                placeholder={`Skill#${idx + 1}`}
+                placeholder={`e.g. ${this.getRandomPlaceholder()}`}
                 onChange={(e) => {
                   this.handleInputChange(e, idx)
                 }}

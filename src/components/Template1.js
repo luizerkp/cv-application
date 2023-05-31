@@ -1,7 +1,7 @@
 import { Component } from "react";
 import styles from "../styles/Template1.module.css";
-import ResumeHeaderInfo from "./ResumeHeaderInfo";
-import ResumeContactInfo from "./ResumeContactInfo";
+import ResumeHeader from "./ResumeHeader";
+import Contact from "./Contact";
 import Skills from "./Skills";
 import Education from "./Education";
 import Credentials from "./Credentials";
@@ -29,13 +29,13 @@ class Template1 extends Component {
     // console.log(masterObj);
     return(
       <div className= {styles['template1-main']}>
-        <ResumeHeaderInfo
+        <ResumeHeader
           fullName={masterObj.header.fullName}
           title={masterObj.header.title}
         />
         <div className= {styles['resume-body']}>
           <div className={styles['resume-left']}>
-            <ResumeContactInfo
+            <Contact
               contact={masterObj.contact}
             />
             <Skills

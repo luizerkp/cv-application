@@ -1,5 +1,27 @@
 import { Component } from 'react';
-import styles from '../styles/CredentialsForm.module.css';
+import styles from '../styles/ResumeForms.module.css';
+import Icon from '@mdi/react';
+import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
+
+const placeholderCredentials = [
+  "Certification",
+  "Professional License",
+  "Industry-specific Training",
+  "Specialized Coursework",
+  "Online Learning",
+  "Internship Experience",
+  "Apprenticeship",
+  "Volunteer Work",
+  "Publications",
+  "Conference Presentations",
+  "Leadership Roles",
+  "Awards and Honors",
+  "Language Proficiency",
+  "Software Proficiency",
+  "Project Portfolio",
+  "Patents",
+  "Memberships in Professional Organizations"
+];
 
 
 class CredentialsForm extends Component {
@@ -47,32 +69,41 @@ class CredentialsForm extends Component {
     });
   };
 
+  getRandomPlaceholder() {
+    return placeholderCredentials[Math.floor(Math.random() * placeholderCredentials.length)];
+  }
+
   render() {
     const { credentials } = this.state;
     // console.log(Array.isArray(Credentials));
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className={styles['Credentials-div']}>
+      <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
+        <div className={styles['input-field-group']}>
           {credentials.map((credential, idx) => (
-            <input
-              type="text"
-              key={idx}
-              id={`credential#${idx}`}
-              name={`credential#${idx}`}
-              value={credential}
-              placeholder={`credential#${idx + 1}`}
-              onChange={(e) => {
-                this.handleInputChange(e, idx)
-              }}
-            />
+            <div key={idx}>
+              <label htmlFor={`credential#${idx}`}>Credential #{idx + 1}</label> 
+              <input
+                type="text"
+                id={`credential#${idx}`}
+                name={`credential#${idx}`}
+                value={credential}
+                placeholder={`e.g. ${this.getRandomPlaceholder()}`}
+                onChange={(e) => {
+                  this.handleInputChange(e, idx)
+                }}
+              />            
+            </div>
+  
           ))}
         </div>
-        <div>
-          <div datatype="addCredential" onClick={this.addCredential}>
+        <div className= {styles['add-remove-div']}>
+          <div className= {styles['add-div']} datatype="addCredential" onClick={this.addCredential}>
+            <Icon path={mdiPlus} size={1} />  
             Add Credential
           </div>
           {credentials.length > 0 && ( // Only show remove button if there is at least one credential input
-            <div datatype="removeCredential" onClick={this.removeCredential}>
+            <div className= {styles['remove-div']} datatype="removeCredential" onClick={this.removeCredential}>
+              <Icon path={mdiTrashCanOutline} size={1} />
               Remove Credential
             </div>
           )}
