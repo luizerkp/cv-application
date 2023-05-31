@@ -1,15 +1,13 @@
 import { Component } from 'react';
 import styles from '../styles/CredentialsForm.module.css';
-// import styled from 'styled-components';
 
-const emptyCredentials = [''];
 
 class CredentialsForm extends Component {
   constructor(props) {
     super(props);
     // console.log(props.Credentials);
     this.state = {
-      credentials: props.credentials || emptyCredentials,
+      credentials: props.credentials || [''],
     };
   };
 
@@ -29,7 +27,7 @@ class CredentialsForm extends Component {
     const { credentials } = this.state;
     const formData = credentials.filter((credential) => credential !== '');
 
-    formData.length > 0 ? this.props.onSubmit(formData) : this.props.onSubmit(emptyCredentials);
+    formData.length > 0 && this.props.onSubmit(formData);
   };
 
   addCredential = () => {

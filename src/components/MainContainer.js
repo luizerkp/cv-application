@@ -27,9 +27,10 @@ class MainContainer extends Component {
                 {
                   company: "",
                   title: "",
+                  companyLocation: "",
                   startDate: "",
                   endDate: "",
-                  description: "",
+                  responsabilities: "",
                 },
               ],
               education: [

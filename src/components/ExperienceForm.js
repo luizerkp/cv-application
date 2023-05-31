@@ -1,20 +1,23 @@
 import { Component } from 'react';
 import styles from '../styles/ExperienceForm.module.css';
 
-const emptyExperience = {
-  company: "",
-  title: "",
-  startDate: "",
-  endDate: "",
-  description: "",
-};
 
 class ExperienceForm extends Component {
   constructor(props) {
     super(props);
-    // console.log(props.skills);
     this.state = {
-      experience: props.experience || [ emptyExperience ] ,
+      experience: props.experience || [this.generateEmptyExperience()],
+    };
+  };
+
+  generateEmptyExperience() {
+    return {
+      company: "",
+      title: "",
+      companyLocation: "",
+      startDate: "",
+      endDate: "",
+      responsabilities: "",
     };
   };
 
@@ -22,9 +25,7 @@ class ExperienceForm extends Component {
     const { name, value } = event.target;
     const { experience } = this.state;
     const updatedExperience = [...experience];
-    
     updatedExperience[idx][name] = value;
-    
 
     this.setState({
       experience: updatedExperience,
@@ -34,14 +35,15 @@ class ExperienceForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { experience } = this.state;
-    const formData = experience.filter((experience) => JSON.stringify(experience) !== JSON.stringify(emptyExperience));
-
-    formData.length > 0 ? this.props.onSubmit(formData) : this.props.onSubmit([ emptyExperience ]);
+    const formData = experience.filter((experienceItem) =>
+      Object.values(experienceItem).some((value) => value !== "")
+    );
+    formData.length > 0 && this.props.onSubmit(formData);
   };
 
   addExperience = () => {
     this.setState((prevState) => ({
-      experience: [...prevState.experience, emptyExperience], // Add an empty experience object
+      experience: [...prevState.experience, this.generateEmptyExperience()], // Add an empty experience object
     }));
   };
 
@@ -61,50 +63,59 @@ class ExperienceForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className={styles['experience-div']}>
-          {experience.map((company, idx) => (
+          {experience.map((experienceItem, idx) => (
             <div key={idx}>
-              <label htmlFor="experience">Company</label>
+              <label htmlFor={`experience${idx}`}>Company</label>
               <input
                 type="text"
                 id={`experience${idx}`}
                 name= 'company'
-                value={company.name}
-                placeholder="company name"
+                value={experienceItem.company}
+                placeholder="Company Name"
                 onChange={(event) => this.handleInputChange(event, idx)}
               />
-              <label htmlFor="degree">Job Tittle:</label>
+              <label htmlFor={`title${idx}`}>Job Tittle:</label>
               <input
                 type="text"
-                id={`degree${idx}`}
+                id={`title${idx}`}
                 name= 'title'
-                value={company.degree}
+                value={experienceItem.title}
                 placeholder="Job Tittle"
                 onChange={(event) => this.handleInputChange(event, idx)}
               />
-              <label htmlFor="startDate">Start Date:</label>
+              <label htmlFor={`companyLocation${idx}`}>Company Location:</label>
+              <input
+                type="text"
+                id={`companyLocation${idx}`}
+                name= 'companyLocation'
+                value={experienceItem.companyLocation}
+                placeholder="Company Location"
+                onChange={(event) => this.handleInputChange(event, idx)}
+              />
+              <label htmlFor={`startDate${idx}`}>Start Date:</label>
               <input
                 type="text"
                 id={`startDate${idx}`}
                 name= 'startDate'
-                value={company.startDate}
+                value={experienceItem.startDate}
                 placeholder="Start Date"
                 onChange={(event) => this.handleInputChange(event, idx)}
               />
-              <label htmlFor="endDate">End Date:</label>
+              <label htmlFor={`endDate${idx}`}>End Date:</label>
               <input
                 type="text"
                 id={`endDate${idx}`}
                 name= 'endDate'
-                value={company.endDate}
-                placeholder="End Date"
+                value={experienceItem.endDate}
+                placeholder="End Date (or Current)"
                 onChange={(event) => this.handleInputChange(event, idx)}
               />
-              <label htmlFor="graduated">Job Description</label>
+              <label htmlFor={`responsabilities${idx}`}>Job Description</label>
               <textarea
                 type="text"
-                id={`description${idx}`}
-                name="description"
-                value={company.description}
+                id={`responsabilities${idx}`}
+                name="responsabilities"
+                value={experienceItem.responsabilities}
                 placeholder= "Job Description"
                 onChange={(event) => this.handleInputChange(event, idx)}
               />

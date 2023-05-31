@@ -1,16 +1,35 @@
-import styles from '../styles/ResumeContainer.module.css';
+// import styles from '../styles/ResumeContainer.module.css';
 import { Component } from 'react';
+import Template1 from './Template1';
 
-
-
-// to do Refactor so that it imports templates that will consume the data from the different resume components
 class ResumeContainer extends Component {
-    render() {
-      const { currentTemplate } = this.props;
-        return (
-          <div className={styles['resume-container']}>Current Resume template is {currentTemplate}</div>
-        );
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentTemplate: props.currentTemplate,
+      masterObject: props.masterObject,
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.masterObject !== this.props.masterObject) {
+      // console.log('ResumeContainer componentDidUpdate');
+      this.setState({
+        masterObject: this.props.masterObject,
+      });
     }
+  }
+
+  render() {
+    // console.log('ResumeContainer render');
+    const { currentTemplate, masterObject } = this.state;
+    const templates = {
+      template1: () => <Template1 masterObj={masterObject} />,
+    };
+    return (
+      templates[currentTemplate] ? templates[currentTemplate]() : templates.template1()
+    );
+  }
 }
 
 export default ResumeContainer;

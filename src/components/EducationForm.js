@@ -1,20 +1,22 @@
 import { Component } from 'react';
 import styles from '../styles/EducationForm.module.css';
 
-const emptyEducation = {
-  school: '',
-  degree: '',
-  startDate: '',
-  endDate: '',
-  graduated: false,
-};
 
 class EducationForm extends Component {
   constructor(props) {
     super(props);
-    // console.log(props.skills);
     this.state = {
-      education: props.education || [ emptyEducation ],
+      education: props.education || [ this.generateEmptyEducation() ],
+    };
+  };
+
+  generateEmptyEducation() {
+    return {
+      school: '',
+      degree: '',
+      startDate: '',
+      endDate: '',
+      graduated: false,
     };
   };
 
@@ -37,14 +39,15 @@ class EducationForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { education } = this.state;
-    const formData = education.filter((education) => JSON.stringify(education) !== JSON.stringify(emptyEducation));
-
-    formData.length > 0 ? this.props.onSubmit(formData) : this.props.onSubmit([ emptyEducation ]);
+    const formData = education.filter((educationItem) =>
+      Object.values(educationItem).some((value) => value !== "")
+    );
+    formData.length > 0 && this.props.onSubmit(formData);
   };
 
   addEducation = () => {
     this.setState((prevState) => ({
-      education: [...prevState.education, emptyEducation], // Add an empty education object
+      education: [...prevState.education, this.generateEmptyEducation()], // Add an empty education object
     }));
   };
 
@@ -66,7 +69,7 @@ class EducationForm extends Component {
         <div className={styles['education-div']}>
           {education.map((school, idx) => (
             <div key={idx}>
-              <label htmlFor="education">School:</label>
+              <label htmlFor={`education${idx}`}>School:</label>
               <input
                 type="text"
                 id={`education${idx}`}
@@ -75,7 +78,7 @@ class EducationForm extends Component {
                 placeholder="School"
                 onChange={(event) => this.handleInputChange(event, idx)}
               />
-              <label htmlFor="degree">Degree or Diploma:</label>
+              <label htmlFor={`degree${idx}`}>Degree or Diploma:</label>
               <input
                 type="text"
                 id={`degree${idx}`}
@@ -84,7 +87,7 @@ class EducationForm extends Component {
                 placeholder="Degree"
                 onChange={(event) => this.handleInputChange(event, idx)}
               />
-              <label htmlFor="startDate">Start Date:</label>
+              <label htmlFor={`startDate${idx}`}>Start Date:</label>
               <input
                 type="text"
                 id={`startDate${idx}`}
@@ -93,7 +96,7 @@ class EducationForm extends Component {
                 placeholder="Start Date"
                 onChange={(event) => this.handleInputChange(event, idx)}
               />
-              <label htmlFor="endDate">End Date:</label>
+              <label htmlFor={`endDate${idx}`}>End Date:</label>
               <input
                 type="text"
                 id={`endDate${idx}`}
@@ -102,7 +105,7 @@ class EducationForm extends Component {
                 placeholder="End Date"
                 onChange={(event) => this.handleInputChange(event, idx)}
               />
-              <label htmlFor="graduated">Graduated?</label>
+              <label htmlFor={`graduated${idx}`}>Graduated?</label>
               <input
                 type="checkbox"
                 id={`graduated${idx}`}

@@ -1,7 +1,7 @@
 import { Component } from 'react';
-// import styles from '../styles/ContactInfo.module.css';
+import styles from '../styles/ResumeForms.module.css';
 
-const sampleContactInfo = {
+const placeholderContactInfo = {
   address: "City, State Zip",
   phone: "###-###-####",
   email: "youremail@hotmail.com",
@@ -14,12 +14,12 @@ class ContactForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: props.contact.address || "",
-      phone: props.contact.phone || "",
-      email: props.contact.email || "",
-      linkedin: props.contact.linkedin || "",
-      github: props.contact.github || "",
-      website: props.contact.website || "",
+      address: props.contact.address,
+      phone: props.contact.phone,
+      email: props.contact.email,
+      linkedin: props.contact.linkedin,
+      github: props.contact.github,
+      website: props.contact.website,
     };
   }
 
@@ -39,72 +39,74 @@ class ContactForm extends Component {
     const { address, phone, email, linkedin, github, website } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="address">Address:</label>
-          <input
-            type="text"
-            id="address"
-            name="address"
-            value={address}
-            placeholder= {sampleContactInfo.address}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="phone">Phone:</label>
-          <input
-            type="pnone"
-            id="phone"
-            name="phone"
-            value={phone}
-            placeholder= {sampleContactInfo.phone}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            placeholder= {sampleContactInfo.email}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="linkedin">LinkedIn <span>(optional)</span>:</label>
-          <input
-            type="text"
-            id="linkedin"
-            name="linkedin"
-            value={linkedin}
-            placeholder= {sampleContactInfo.linkedin}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="github">GitHub <span>(optional)</span>:</label>
-          <input
-            type="text"
-            id="github"
-            name="github"
-            value={github}
-            placeholder= {sampleContactInfo.github}
-            onChange={this.handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="website">Website <span>(optional)</span>:</label>
-          <input
-            type="text"
-            id="website"
-            name="website"
-            value={website}
-            placeholder= {sampleContactInfo.website}
-            onChange={this.handleInputChange}
-          />
+      <form className={styles['form-container']} onSubmit={this.handleSubmit}>
+        <div className={styles['input-field-group']}>
+          <div>
+            <label htmlFor="address">Address:</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              value={address}
+              placeholder= {placeholderContactInfo.address}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="phone">Phone:</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={phone}
+              placeholder= {placeholderContactInfo.phone}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              placeholder= {placeholderContactInfo.email}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="linkedin">LinkedIn <span>(optional)</span>:</label>
+            <input
+              type="text"
+              id="linkedin"
+              name="linkedin"
+              value={linkedin}
+              placeholder= {placeholderContactInfo.linkedin}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="github">GitHub <span>(optional)</span>:</label>
+            <input
+              type="text"
+              id="github"
+              name="github"
+              value={github}
+              placeholder= {placeholderContactInfo.github}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="website">Website <span>(optional)</span>:</label>
+            <input
+              type="text"
+              id="website"
+              name="website"
+              value={website}
+              placeholder= {placeholderContactInfo.website}
+              onChange={this.handleInputChange}
+            />
+          </div>     
         </div>
         <button type="submit">Continue</button>
       </form>
