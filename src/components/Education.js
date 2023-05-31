@@ -23,8 +23,9 @@ class Education extends Component {
                 <h2>Education</h2>
                 {education.map((educationItem, index) => (
                     <div key={index} className={styles['education-item']}>
-                        <h3>{educationItem.school}</h3>
-                        <p>{educationItem.degree}</p>
+                        <h3>{educationItem.degree}</h3>
+                        <p>{educationItem.school}</p>
+                        <p>{educationItem.schoolLocation}</p>
                         <p>{educationItem.startDate} - {educationItem.endDate}</p>
                     </div>
                 ))}

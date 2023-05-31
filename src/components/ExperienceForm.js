@@ -1,5 +1,7 @@
 import { Component } from 'react';
-import styles from '../styles/ExperienceForm.module.css';
+import styles from '../styles/ResumeForms.module.css';
+import Icon from '@mdi/react';
+import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
 
 class ExperienceForm extends Component {
@@ -61,73 +63,87 @@ class ExperienceForm extends Component {
   render() {
     const { experience } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className={styles['experience-div']}>
+      <form className={styles['form-container']} onSubmit={this.handleSubmit}>
+        <div>
           {experience.map((experienceItem, idx) => (
-            <div key={idx}>
-              <label htmlFor={`experience${idx}`}>Company</label>
-              <input
-                type="text"
-                id={`experience${idx}`}
-                name= 'company'
-                value={experienceItem.company}
-                placeholder="Company Name"
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
-              <label htmlFor={`title${idx}`}>Job Tittle:</label>
-              <input
-                type="text"
-                id={`title${idx}`}
-                name= 'title'
-                value={experienceItem.title}
-                placeholder="Job Tittle"
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
-              <label htmlFor={`companyLocation${idx}`}>Company Location:</label>
-              <input
-                type="text"
-                id={`companyLocation${idx}`}
-                name= 'companyLocation'
-                value={experienceItem.companyLocation}
-                placeholder="Company Location"
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
-              <label htmlFor={`startDate${idx}`}>Start Date:</label>
-              <input
-                type="text"
-                id={`startDate${idx}`}
-                name= 'startDate'
-                value={experienceItem.startDate}
-                placeholder="Start Date"
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
-              <label htmlFor={`endDate${idx}`}>End Date:</label>
-              <input
-                type="text"
-                id={`endDate${idx}`}
-                name= 'endDate'
-                value={experienceItem.endDate}
-                placeholder="End Date (or Current)"
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
-              <label htmlFor={`responsabilities${idx}`}>Job Description</label>
-              <textarea
-                type="text"
-                id={`responsabilities${idx}`}
-                name="responsabilities"
-                value={experienceItem.responsabilities}
-                placeholder= "Job Description"
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
+            <div className={styles['input-field-group']} key={idx}>
+              <div>
+                <label htmlFor={`experience${idx}`}>Company</label>
+                <input
+                  type="text"
+                  id={`experience${idx}`}
+                  name= 'company'
+                  value={experienceItem.company}
+                  placeholder="Company Name"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>
+              <div>
+                <label htmlFor={`title${idx}`}>Job Tittle:</label>
+                <input
+                  type="text"
+                  id={`title${idx}`}
+                  name= 'title'
+                  value={experienceItem.title}
+                  placeholder="Job Tittle"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>
+              <div>
+                <label htmlFor={`startDate${idx}`}>Start Date:</label>
+                <input
+                  type="text"
+                  id={`startDate${idx}`}
+                  name= 'startDate'
+                  value={experienceItem.startDate}
+                  placeholder="Start Date"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>
+              <div>
+                <label htmlFor={`endDate${idx}`}>End Date:</label>
+                <input
+                  type="text"
+                  id={`endDate${idx}`}
+                  name= 'endDate'
+                  value={experienceItem.endDate}
+                  placeholder="End Date (or Current)"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>
+              <div>
+                <label htmlFor={`companyLocation${idx}`}>Company Location:</label>
+                <input
+                  type="text"
+                  id={`companyLocation${idx}`}
+                  name= 'companyLocation'
+                  value={experienceItem.companyLocation}
+                  placeholder="Company Location"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>              
+              <div className={styles['text-box']}>
+                <label htmlFor={`responsabilities${idx}`}>Job Description</label>
+                <textarea
+                  type="text"
+                  id={`responsabilities${idx}`}
+                  name="responsabilities"
+                  value={experienceItem.responsabilities}
+                  placeholder= "Job Description"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>
             </div>
           ))}
         </div>
-        <div>
-          <div datatype="addExperience" onClick={this.addExperience}>
+        <div className= {styles['add-remove-div']}>
+          <div className= {styles['add-div']} datatype="addExperience" onClick={this.addExperience}>
+            <Icon path={mdiPlus} size={1} />
             Add Experience
           </div>
           {experience.length > 0 && ( // Only show remove button if there is at least one skill input
-            <div datatype="removeExperience" onClick={this.removeExperience}>
+            <div className= {styles['remove-div']} datatype="removeExperience" onClick={this.removeExperience}>
+              <Icon path={mdiTrashCanOutline} size={1} />
               Remove Experience
             </div>
           )}

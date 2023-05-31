@@ -39,7 +39,7 @@ class MainContainer extends Component {
                   degree: "",
                   startDate: "",
                   endDate: "",
-                  graduated: false,
+                  schoolLocation: "",
                 },
               ],
               skills: [''],

@@ -1,5 +1,7 @@
 import { Component } from 'react';
-import styles from '../styles/EducationForm.module.css';
+import styles from '../styles/ResumeForms.module.css';
+import Icon from '@mdi/react';
+import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
 
 class EducationForm extends Component {
@@ -16,7 +18,7 @@ class EducationForm extends Component {
       degree: '',
       startDate: '',
       endDate: '',
-      graduated: false,
+      schoolLocation: '',
     };
   };
 
@@ -24,12 +26,7 @@ class EducationForm extends Component {
     const { name } = event.target;
     const { education } = this.state;
     const updatedEducation = [...education];
-
-    if (event.target.type === 'checkbox') {
-      updatedEducation[idx][name] = event.target.checked;
-    } else {
-      updatedEducation[idx][name] = event.target.value;
-    }
+    updatedEducation[idx][name] = event.target.value;
 
     this.setState({
       education: updatedEducation,
@@ -65,63 +62,77 @@ class EducationForm extends Component {
   render() {
     const { education } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className={styles['education-div']}>
+      <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
+        <div>
           {education.map((school, idx) => (
-            <div key={idx}>
-              <label htmlFor={`education${idx}`}>School:</label>
-              <input
-                type="text"
-                id={`education${idx}`}
-                name= 'school'
-                value={school.name}
-                placeholder="School"
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
-              <label htmlFor={`degree${idx}`}>Degree or Diploma:</label>
-              <input
-                type="text"
-                id={`degree${idx}`}
-                name= 'degree'
-                value={school.degree}
-                placeholder="Degree"
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
-              <label htmlFor={`startDate${idx}`}>Start Date:</label>
-              <input
-                type="text"
-                id={`startDate${idx}`}
-                name= 'startDate'
-                value={school.startDate}
-                placeholder="Start Date"
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
-              <label htmlFor={`endDate${idx}`}>End Date:</label>
-              <input
-                type="text"
-                id={`endDate${idx}`}
-                name= 'endDate'
-                value={school.endDate}
-                placeholder="End Date"
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
-              <label htmlFor={`graduated${idx}`}>Graduated?</label>
-              <input
-                type="checkbox"
-                id={`graduated${idx}`}
-                name= 'graduated'
-                checked={school.graduated}
-                onChange={(event) => this.handleInputChange(event, idx)}
-              />
+            <div className={styles['input-field-group']} key={idx}>
+              <div>
+                <label htmlFor={`education${idx}`}>School:</label>
+                <input
+                  type="text"
+                  id={`education${idx}`}
+                  name= 'school'
+                  value={school.name}
+                  placeholder="School"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>
+              <div>
+                <label htmlFor={`degree${idx}`}>Degree or Diploma:</label>
+                <input
+                  type="text"
+                  id={`degree${idx}`}
+                  name= 'degree'
+                  value={school.degree}
+                  placeholder="Degree"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>
+              <div>
+                <label htmlFor={`startDate${idx}`}>Start Date:</label>
+                <input
+                  type="text"
+                  id={`startDate${idx}`}
+                  name= 'startDate'
+                  value={school.startDate}
+                  placeholder="Start Date"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>
+              <div>
+                <label htmlFor={`endDate${idx}`}>End Date:</label>
+                <input
+                  type="text"
+                  id={`endDate${idx}`}
+                  name= 'endDate'
+                  value={school.endDate}
+                  placeholder="End Date"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>
+              <div>
+                <label htmlFor={`endDate${idx}`}>School Location</label>
+                <input
+                  type="text"
+                  id={`schoolLocation${idx}`}
+                  name= 'schoolLocation'
+                  value={school.schoolLocation}
+                  placeholder="School Location"
+                  onChange={(event) => this.handleInputChange(event, idx)}
+                />                
+              </div>
             </div>
           ))}
         </div>
-        <div>
-          <div datatype="addEducation" onClick={this.addEducation}>
+        <div className= {styles['add-remove-div']}>
+          <div className= {styles['add-div']} datatype="addEducation" onClick={this.addEducation}>
+          <Icon path={mdiPlus} size={1} />
             Add Education
           </div>
           {education.length > 0 && ( // Only show remove button if there is at least one skill input
-            <div datatype="removeEducation" onClick={this.removeEducation}>
+            <div className= {styles['remove-div']} 
+            datatype="removeEducation" onClick={this.removeEducation}>
+              <Icon path={mdiTrashCanOutline} size={1} />
               Remove Education
             </div>
           )}

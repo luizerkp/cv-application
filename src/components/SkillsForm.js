@@ -1,5 +1,7 @@
 import { Component } from 'react';
-import styles from '../styles/SkillsForm.module.css';
+import styles from '../styles/ResumeForms.module.css';
+import Icon from '@mdi/react';
+import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
 
 class SkillsForm extends Component {
@@ -49,28 +51,33 @@ class SkillsForm extends Component {
     const { skills } = this.state;
     // console.log(Array.isArray(skills));
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className={styles['skills-div']}>
+      <form className={styles['form-container']} onSubmit={this.handleSubmit}>
+        <div  className={styles['input-field-group']}>
           {skills.map((skill, idx) => (
-            <input
-              type="text"
-              key={idx}
-              id={`Skill#${idx}`}
-              name={`Skill#${idx}`}
-              value={skill}
-              placeholder={`Skill#${idx + 1}`}
-              onChange={(e) => {
-                this.handleInputChange(e, idx)
-              }}
-            />
+            <div key={idx}> 
+              <label htmlFor={`Skill#${idx}`}>Skill #{idx + 1}</label>            
+              <input
+                type="text"
+                id={`Skill#${idx}`}
+                name={`Skill#${idx}`}
+                value={skill}
+                placeholder={`Skill#${idx + 1}`}
+                onChange={(e) => {
+                  this.handleInputChange(e, idx)
+                }}
+              />
+          </div>
           ))}
         </div>
-        <div>
-          <div datatype="addSkill" onClick={this.addSkill}>
+        <div className= {styles['add-remove-div']}>
+          <div className= {styles['add-div']} datatype="addSkill" onClick={this.addSkill}>
+          <Icon path={mdiPlus} size={1} />
             Add Skill
           </div>
           {skills.length > 0 && ( // Only show remove button if there is at least one skill input
-            <div datatype="removeSkill" onClick={this.removeSkill}>
+            <div className= {styles['remove-div']} 
+            datatype="removeSkill" onClick={this.removeSkill}>
+              <Icon path={mdiTrashCanOutline} size={1} />
               Remove Skill
             </div>
           )}
