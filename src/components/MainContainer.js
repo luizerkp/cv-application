@@ -94,6 +94,7 @@ class MainContainer extends Component {
 
     render() {
       const { currentTemplate } = this.props;
+      console.log(currentTemplate);
       // console.log(sampleResume)
         return (
           <div className={styles['main-container']}>

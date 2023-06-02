@@ -70,7 +70,11 @@ class TemplateSelectModal extends Component {
                 />
                 <label htmlFor="template1">Template 1</label>
               </div>
-              <img src={template1} className= {styles['template-select-img']} alt="Template number 1" />
+              <img src={template1} 
+              className= {styles['template-select-img']} 
+              alt="Template number 1" 
+              data-value="template1"
+              onClick={(event) => updateCurrentTemplate(event.target.dataset.value)}/>
             </div>
             <div className={styles['template-select-item']}>
               <div className={styles['template-select-input']}>
@@ -84,7 +88,11 @@ class TemplateSelectModal extends Component {
                 />
                 <label htmlFor="template2">Template 2</label>
               </div>
-              <img src={template2} className= {styles['template-select-img']} alt="Template number 2" />
+              <img src={template2} 
+              className= {styles['template-select-img']} 
+              alt="Template number 2" 
+              data-value="template2"
+              onClick={(event) => updateCurrentTemplate(event.target.dataset.value)}/>
             </div>
             <div className={styles['template-select-item']}>
               <div className={styles['template-select-input']}>
@@ -98,7 +106,11 @@ class TemplateSelectModal extends Component {
                 />
                 <label htmlFor="template3">Template 3</label>
               </div>
-              <img src={template3} className= {styles['template-select-img']} alt="Template number 3" />
+              <img src={template3} 
+              className= {styles['template-select-img']} 
+              alt="Template number 3" 
+              data-value="template3"
+              onClick={(event) => updateCurrentTemplate(event.target.dataset.value)}/>
             </div>                        
           </div>
         </div>

@@ -19,6 +19,7 @@ class App extends Component {
   
   render() {
     const { currentTemplate } = this.state;
+    // console.log(currentTemplate);
     return (
       <div className="App">
         <Header

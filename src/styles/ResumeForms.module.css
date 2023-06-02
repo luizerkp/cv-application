@@ -1,6 +1,6 @@
-button,
-input,
-textarea {
+.form-container button,
+.form-container input,
+.form-container textarea {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -11,30 +11,30 @@ textarea {
   box-sizing: border-box;
 }
 
-input,
-textarea {
+.form-container input,
+.form-container textarea {
   border: 2px solid #333;
   background-color: white;
   border-radius: 0.25rem;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea {
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="tel"],
+.form-container textarea {
   font: 1rem / 1.25 sans-serif;
   box-sizing: border-box;
   width: 100%;
   padding: 0.25rem 0.75rem;
 }
 
-label {
+.form-container label {
   display: inline-block;
   font: bold 1.2rem sans-serif;
   margin-bottom: 0.5rem;
 }
 
-textarea {
+.form-container textarea {
   min-height: 8rem;
 }
 
