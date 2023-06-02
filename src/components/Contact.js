@@ -10,7 +10,7 @@ class Contact extends Component {
       address: props.contact.address,
       phone: props.contact.phone,
       email: props.contact.email,
-      linkedin: props.linkedin,
+      linkedin: props.contact.linkedin,
       gitHub: props.contact.gitHub,
       website: props.contact.website ,
     };
@@ -32,6 +32,7 @@ class Contact extends Component {
 
   render() {
     const { address, phone, email, linkedin, gitHub, website } = this.state;
+    // console.log(this.props.contact);
     return (
       <div className= "contact">
         <h2>Contact</h2>

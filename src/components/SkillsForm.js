@@ -82,7 +82,7 @@ class SkillsForm extends Component {
         <div  className={styles['input-field-group']}>
           {skills.map((skill, idx) => (
             <div key={idx}> 
-              <label htmlFor={`Skill#${idx}`}>Skill #{idx + 1}</label>            
+              <label htmlFor={`Skill#${idx}`}>Skill {idx + 1}</label>            
               <input
                 type="text"
                 id={`Skill#${idx}`}

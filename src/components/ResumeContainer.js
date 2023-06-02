@@ -24,7 +24,10 @@ class ResumeContainer extends Component {
     // console.log('ResumeContainer render');
     const { currentTemplate, masterObject } = this.state;
     const templates = {
-      template1: () => <Template1 masterObj={masterObject} />,
+      template1: () => <Template1 
+        masterObj={masterObject}
+        template = {"template1"} 
+      />,
     };
     return (
       templates[currentTemplate] ? templates[currentTemplate]() : templates.template1()

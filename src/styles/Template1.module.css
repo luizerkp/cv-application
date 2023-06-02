@@ -1,0 +1,40 @@
+/* reset all padding and margin values */
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.template1-main {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.resume-body {
+  display: flex;
+  padding-left: 10px;
+}
+
+.name {
+  font-size: 3rem;
+  margin-bottom: 5px;
+}
+
+.title { 
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.resume-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: blue;
+  width: 100%;
+  color: white;
+  font-weight: bold;
+}

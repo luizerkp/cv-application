@@ -1,4 +1,5 @@
 import { Component } from "react";
+import styles from "../styles/Template1.module.css";
 
 class ResumeHeader extends Component {
   constructor(props) {
@@ -27,11 +28,11 @@ class ResumeHeader extends Component {
   render() {
     const { fullName, title } = this.state;
     return (
-    <div className= "resume-header">      
-      <div className= "name">
+    <div className= {styles['resume-header']}>      
+      <div className= {styles['name']}>
         {fullName}
       </div>
-      <div className= 'title'>
+      <div className= {styles['title']}>
         {title}
       </div>
     </div>

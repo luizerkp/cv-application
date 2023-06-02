@@ -3,6 +3,7 @@ import styles from '../styles/MainContainer.module.css';
 import FormContainer from './FormContainer';
 import ResumeContainer from './ResumeContainer';
 import SideBar from './SideBar';
+import sampleResume from '../sampleResume';
 
 class MainContainer extends Component {
     constructor(props) {
@@ -93,6 +94,7 @@ class MainContainer extends Component {
 
     render() {
       const { currentTemplate } = this.props;
+      // console.log(sampleResume)
         return (
           <div className={styles['main-container']}>
             <SideBar 
@@ -106,7 +108,8 @@ class MainContainer extends Component {
               masterObject={this.state.masterObject}
             />
             <ResumeContainer
-              masterObject={this.state.masterObject}
+              // masterObject={this.state.masterObject}
+              masterObject={sampleResume}
               currentTemplate={currentTemplate}
             /> 
           </div>

@@ -9,16 +9,17 @@ const sampleResume = {
     phone: "+1 (123) 456-7890",
     email: "johnsmith@email.com",
     linkedin: "linkedin.com/in/johnsmith",
-    github: "github.com/johnsmith",
+    gitHub: "github.com/johnsmith",
     website: "johnsmith.com",
   },
   experience: [
     {
       company: "XYZ Corporation",
       title: "Product Manager",
+      companyLocation: "Auburn, WA",
       startDate: "January 2018",
       endDate: "Present",
-      description: "Managed the development and launch of new product features, conducted market research, and collaborated with cross-functional teams to drive product roadmap.",
+      responsabilities: "Managed the development and launch of new product features, conducted market research, and collaborated with cross-functional teams to drive product roadmap.",
     },
     {
       company: "ABC Inc.",

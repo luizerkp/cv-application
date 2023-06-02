@@ -12,6 +12,7 @@ class Template1 extends Component {
     super(props);
     this.state = {
       masterObj: props.masterObj,
+      template: props.template,
     };
   }
   componentDidUpdate(prevProps) {
@@ -20,18 +21,20 @@ class Template1 extends Component {
       // console.log(this.props.masterObj);
       this.setState({
         masterObj: this.props.masterObj,
+        template: this.props.template,
       });
     }
   }
   render() {
     // console.log('Template1 render');
-    const { masterObj } = this.state;
-    // console.log(masterObj);
+    const { masterObj, template } = this.state;
+    // console.log(masterObj.contact);
     return(
       <div className= {styles['template1-main']}>
         <ResumeHeader
           fullName={masterObj.header.fullName}
           title={masterObj.header.title}
+          template = {template}
         />
         <div className= {styles['resume-body']}>
           <div className={styles['resume-left']}>

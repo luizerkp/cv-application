@@ -81,7 +81,7 @@ class CredentialsForm extends Component {
         <div className={styles['input-field-group']}>
           {credentials.map((credential, idx) => (
             <div key={idx}>
-              <label htmlFor={`credential#${idx}`}>Credential #{idx + 1}</label> 
+              <label htmlFor={`credential#${idx}`}>Credential {idx + 1}</label> 
               <input
                 type="text"
                 id={`credential#${idx}`}
