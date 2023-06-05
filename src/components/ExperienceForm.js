@@ -37,10 +37,12 @@ class ExperienceForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { experience } = this.state;
+    
+    // filter out any empty experience objects
     const formData = experience.filter((experienceItem) =>
-      Object.values(experienceItem).some((value) => value !== "")
+      Object.values(experienceItem).every((value) => value !== "")
     );
-    formData.length > 0 && this.props.onSubmit(formData);
+    this.props.onSubmit(formData)
   };
 
   addExperience = () => {
@@ -141,7 +143,7 @@ class ExperienceForm extends Component {
             <Icon path={mdiPlus} size={1} />
             Add Experience
           </div>
-          {experience.length > 0 && ( // Only show remove button if there is at least one skill input
+          {experience.length > 1 && ( // Only show remove button if there is at least one skill input
             <div className= {styles['remove-div']} datatype="removeExperience" onClick={this.removeExperience}>
               <Icon path={mdiTrashCanOutline} size={1} />
               Remove Experience

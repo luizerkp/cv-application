@@ -36,7 +36,7 @@ class MainContainer extends Component {
               ],
               education: [
                 {
-                  school: "",
+                  schoolName: "",
                   degree: "",
                   startDate: "",
                   endDate: "",
@@ -55,8 +55,9 @@ class MainContainer extends Component {
     
     handleNextFormClick = (formName) => {
       const formOrder = ['header', 'contact', 'experience', 'education', 'skills', 'credentials'];
+      const formLength = formOrder.length;
       const currentIndex = formOrder.indexOf(formName);
-      const nextForm = formOrder[currentIndex + 1];
+      const nextForm = (currentIndex + 1) < formLength ? formOrder[currentIndex + 1] : formOrder[0];
       // for now do nothing after last form "credentials", in the future, this will open the resume modal
       nextForm && this.setState({ activeForm: nextForm });
       nextForm && this.handleActiveForm(nextForm);
@@ -72,13 +73,25 @@ class MainContainer extends Component {
         selectedElement.setAttribute('data-active', true);
       }
     }
-
+    checkEmptyForm = (formData) => {
+      if (!formData) return true;
+      
+      const emptyForm = Array.isArray(formData) ? 
+      formData.every((value) => value === '') : 
+      Object.values(formData).every((value) => value === '');
+      return emptyForm;
+    };
+    
     checkNewData= (formData, formName) => {
       return JSON.stringify(formData) !== JSON.stringify(this.state.masterObject[formName]);
     };
+
+    checkData = (formData, formName) => {
+      return this.checkEmptyForm(formData) ? false : this.checkNewData(formData, formName);
+    };
   
     handleFormSubmit = (formData, formName) => {
-      this.checkNewData(formData, formName) && this.setState((prevState) => ({
+      this.checkData(formData, formName) && this.setState((prevState) => ({
         masterObject: {
           ...prevState.masterObject,
           [formName]: formData,
@@ -94,7 +107,7 @@ class MainContainer extends Component {
 
     render() {
       const { currentTemplate } = this.props;
-      console.log(currentTemplate);
+      // console.log(currentTemplate);
       // console.log(sampleResume)
         return (
           <div className={styles['main-container']}>
@@ -109,8 +122,8 @@ class MainContainer extends Component {
               masterObject={this.state.masterObject}
             />
             <ResumeContainer
-              // masterObject={this.state.masterObject}
-              masterObject={sampleResume}
+              masterObject={this.state.masterObject}
+              // masterObject={sampleResume}
               currentTemplate={currentTemplate}
             /> 
           </div>

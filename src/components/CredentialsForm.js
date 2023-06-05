@@ -47,9 +47,10 @@ class CredentialsForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { credentials } = this.state;
-    const formData = credentials.filter((credential) => credential !== '');
 
-    formData.length > 0 && this.props.onSubmit(formData);
+    // filter out any empty credentials
+    const formData = credentials.filter((credential) => credential !== '');
+    this.props.onSubmit(formData);
   };
 
   addCredential = () => {
@@ -101,7 +102,7 @@ class CredentialsForm extends Component {
             <Icon path={mdiPlus} size={1} />  
             Add Credential
           </div>
-          {credentials.length > 0 && ( // Only show remove button if there is at least one credential input
+          {credentials.length > 1 && ( // Only show remove button if there is at least one credential input
             <div className= {styles['remove-div']} datatype="removeCredential" onClick={this.removeCredential}>
               <Icon path={mdiTrashCanOutline} size={1} />
               Remove Credential

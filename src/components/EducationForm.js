@@ -14,7 +14,7 @@ class EducationForm extends Component {
 
   generateEmptyEducation() {
     return {
-      school: '',
+      schoolName: '',
       degree: '',
       startDate: '',
       endDate: '',
@@ -36,10 +36,12 @@ class EducationForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { education } = this.state;
+
+    // filter out any empty education objects
     const formData = education.filter((educationItem) =>
-      Object.values(educationItem).some((value) => value !== "")
+      Object.values(educationItem).every((value) => value !== "")
     );
-    formData.length > 0 && this.props.onSubmit(formData);
+    this.props.onSubmit(formData);
   };
 
   addEducation = () => {
@@ -61,6 +63,7 @@ class EducationForm extends Component {
 
   render() {
     const { education } = this.state;
+    // console.log(education);
     return (
       <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
         <div>
@@ -71,9 +74,9 @@ class EducationForm extends Component {
                 <input
                   type="text"
                   id={`education${idx}`}
-                  name= 'school'
-                  value={school.name}
-                  placeholder="School"
+                  name= 'schoolName'
+                  value={school.schoolName}
+                  placeholder="School Name"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
               </div>
@@ -129,7 +132,7 @@ class EducationForm extends Component {
           <Icon path={mdiPlus} size={1} />
             Add Education
           </div>
-          {education.length > 0 && ( // Only show remove button if there is at least one skill input
+          {education.length > 1 && ( // Only show remove button if there is at least one skill input
             <div className= {styles['remove-div']} 
             datatype="removeEducation" onClick={this.removeEducation}>
               <Icon path={mdiTrashCanOutline} size={1} />

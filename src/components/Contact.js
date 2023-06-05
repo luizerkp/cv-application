@@ -4,34 +4,8 @@ import { mdiMapMarkerOutline, mdiCellphone, mdiEmailOutline, mdiLinkedin, mdiGit
 import styles from '../styles/ResumeContactInfo.module.css';
 
 class Contact extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      address: props.contact.address,
-      phone: props.contact.phone,
-      email: props.contact.email,
-      linkedin: props.contact.linkedin,
-      gitHub: props.contact.gitHub,
-      website: props.contact.website ,
-    };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.contact !== this.props.contact) {
-      // console.log('ResumeContactInfo componentDidUpdate');
-      this.setState({
-        address: this.props.contact.address,
-        phone: this.props.contact.phone,
-        email: this.props.contact.email,
-        linkedin: this.props.contact.linkedin,
-        gitHub: this.props.contact.gitHub,
-        website: this.props.contact.website,
-      });
-    }
-  }
-
   render() {
-    const { address, phone, email, linkedin, gitHub, website } = this.state;
+    const { address, phone, email, linkedin, gitHub, website } = this.props.contact;
     // console.log(this.props.contact);
     return (
       <div className= "contact">

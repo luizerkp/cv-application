@@ -49,8 +49,10 @@ class SkillsForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { skills } = this.state;
+    
+    // filter out any empty skills
     const formData = skills.filter((skill) => skill !== '');
-    formData.length > 0 && this.props.onSubmit(formData);
+    this.props.onSubmit(formData);
   };
 
   addSkill = () => {
@@ -101,7 +103,7 @@ class SkillsForm extends Component {
           <Icon path={mdiPlus} size={1} />
             Add Skill
           </div>
-          {skills.length > 0 && ( // Only show remove button if there is at least one skill input
+          {skills.length > 1 && ( // Only show remove button if there is at least one skill input
             <div className= {styles['remove-div']} 
             datatype="removeSkill" onClick={this.removeSkill}>
               <Icon path={mdiTrashCanOutline} size={1} />

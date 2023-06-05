@@ -31,7 +31,7 @@ const sampleResume = {
   ],
   education: [
     {
-      school: "University of XYZ",
+      schoolName: "University of XYZ",
       degree: "Bachelor of Science in Business Administration",
       startDate: "September 2011",
       endDate: "May 2015",
