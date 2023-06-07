@@ -1,14 +1,14 @@
 import { Component } from 'react';
 import Icon from '@mdi/react';
 import { mdiMapMarkerOutline, mdiCellphone, mdiEmailOutline, mdiLinkedin, mdiGithub, mdiWeb} from '@mdi/js';
-import styles from '../styles/ResumeContactInfo.module.css';
+import styles from "../styles/Template1.module.css";
 
 class Contact extends Component {
   render() {
     const { address, phone, email, linkedin, gitHub, website } = this.props.contact;
     // console.log(this.props.contact);
     return (
-      <div className= "contact">
+      <div className= {styles['contact']}>
         <h2>Contact</h2>
         <div className= {styles['resume-contact-item']}>
           <Icon path={mdiMapMarkerOutline} size={1} />

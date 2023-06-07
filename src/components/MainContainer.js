@@ -75,7 +75,7 @@ class MainContainer extends Component {
     }
     checkEmptyForm = (formData) => {
       if (!formData) return true;
-      
+
       const emptyForm = Array.isArray(formData) ? 
       formData.every((value) => value === '') : 
       Object.values(formData).every((value) => value === '');
@@ -122,8 +122,8 @@ class MainContainer extends Component {
               masterObject={this.state.masterObject}
             />
             <ResumeContainer
-              masterObject={this.state.masterObject}
-              // masterObject={sampleResume}
+              // masterObject={this.state.masterObject}
+              masterObject={sampleResume}
               currentTemplate={currentTemplate}
             /> 
           </div>
