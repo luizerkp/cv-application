@@ -2,7 +2,7 @@ const sampleResume = {
   header: {
     fullName: 'John Smith',
     title: 'Product Manager',
-    aboutMe: 'I am a highly motivated and experienced Product Manager with a proven track record of successfully launching innovative products.',
+    aboutMe: 'With a keen eye for market trends and a deep understanding of customer needs, I strive to deliver exceptional user experiences through effective product strategies. I excel in cross-functional collaboration, leveraging my strong communication skills to align stakeholders and drive product development initiatives that exceed expectations and generate significant business growth.',
   },
   contact: {
     address: "123 Main Street, City, State",
@@ -12,6 +12,7 @@ const sampleResume = {
     gitHub: "github.com/johnsmith",
     website: "johnsmith.com",
   },
+
   experience: [
     {
       company: "XYZ Corporation",
@@ -26,8 +27,33 @@ const sampleResume = {
       title: "Assistant Product Manager",
       startDate: "June 2015",
       endDate: "December 2017",
-      description: "Assisted in product planning, conducted competitive analysis, and supported the product team in various tasks.",
+      companyLocation: "Seattle, WA",
+      responsabilities: "Assisted in product planning, conducted competitive analysis, and supported the product team in various tasks.",
     },
+    {
+      company: "XYZ Corporation",
+      title: "Marketing Specialist",
+      startDate: "July 2013",
+      endDate: "May 2015",
+      companyLocation: "Auburn, WA",
+      responsabilities: "Developed and implemented marketing strategies, managed social media channels, conducted market research, and coordinated promotional activities.",
+    },
+    {
+      company: "DEF Industries",
+      title: "Business Analyst",
+      startDate: "August 2011",
+      endDate: "June 2013",
+      companyLocation: "Bellevue, WA",
+      responsabilities: "Analyzed business processes, identified areas for improvement, conducted data analysis, and collaborated with stakeholders to implement solutions.",
+    },
+    {
+      company: "GHI Corporation",
+      title: "Sales Representative",
+      startDate: "March 2009",
+      endDate: "July 2011",
+      companyLocation: "Seattle, WA",
+      responsabilities: "Managed a portfolio of clients, conducted sales presentations, negotiated contracts, and achieved and exceeded sales targets.",
+    }
   ],
   education: [
     {
