@@ -36,7 +36,7 @@ const sampleResume = {
       startDate: "July 2013",
       endDate: "May 2015",
       companyLocation: "Auburn, WA",
-      responsabilities: "Developed and implemented marketing strategies, managed social media channels, conducted market research, and coordinated promotional activities.",
+      responsabilities: "-Developed and implemented marketing strategies\n-Managed social media channels, conducted market research\n-Coordinated promotional activities.",
     },
     {
       company: "DEF Industries",

@@ -3,6 +3,7 @@ import styles from '../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
 import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
+const jobResponsabilitiesPlaceholderText = "Job Description: start line with a dash ( - ) if you want to add bullet points; see below:\n-First bullet point\n-Second bullet point\n-Third bullet point";
 
 class ExperienceForm extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class ExperienceForm extends Component {
     const { experience } = this.state;
     const updatedExperience = [...experience];
     updatedExperience[idx][name] = value;
-
+    // console.log(name, value);
     this.setState({
       experience: updatedExperience,
     });
@@ -42,6 +43,7 @@ class ExperienceForm extends Component {
     const formData = experience.filter((experienceItem) =>
       Object.values(experienceItem).every((value) => value !== "")
     );
+    
     this.props.onSubmit(formData)
   };
 
@@ -125,13 +127,13 @@ class ExperienceForm extends Component {
                 />                
               </div>              
               <div className={styles['text-box']}>
-                <label htmlFor={`responsabilities${idx}`}>Job Description</label>
+                <label htmlFor={`responsabilities${idx}`}>Job Description:</label>
                 <textarea
                   type="text"
                   id={`responsabilities${idx}`}
                   name="responsabilities"
                   value={experienceItem.responsabilities}
-                  placeholder= "Job Description"
+                  placeholder= {jobResponsabilitiesPlaceholderText}
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
               </div>

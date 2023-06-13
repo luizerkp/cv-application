@@ -13,7 +13,7 @@ class Template1 extends Component {
     const { masterObj } = this.props;
     // console.log(masterObj.contact);
     return(
-      <div className= {styles['template1-main']}>
+      <div className= {styles['template1-main']} data-resume>
         <ResumeHeader
           fullName={masterObj.header.fullName}
           title={masterObj.header.title}
