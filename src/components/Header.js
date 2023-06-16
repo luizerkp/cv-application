@@ -4,6 +4,8 @@ import logo from '../imgs/cv-logo.png';
 import { mdiFileDownload, mdiFormatListBulleted } from '@mdi/js';
 import Icon from '@mdi/react';
 import TemplateSelectModal from './TemplateSelectModal';
+import { Page, Document, PDFDownloadLink, Text, View} from '@react-pdf/renderer';
+// import GeneratePDFDocument from '../utils/GeneratePDFDocument';
 
 
 class Header extends Component {
@@ -20,11 +22,29 @@ class Header extends Component {
   handleModalClose = () => {
     this.setState({ modalOpen: false });
   };
+  handleGeneratePDF = (resumeElement) => {
+    console.log(resumeElement);
+    const resumePDF = (
+      <Document>
+        <Page size="A4">
+          <View>
+            <Text>Hello World!</Text>
+          </View>
+        </Page>
+      </Document>
+    )
 
-  // handleGeneratePDF = () => {
-  //   const resumeElement = document.querySelector('[data-resume]');
-  // };
+    console.log(resumePDF);
   
+    return (
+      <PDFDownloadLink className={styles['header-button-download-link']} document={resumePDF} fileName="resume.pdf">
+        {({ blob, url, loading, error }) => (
+          loading ? 'Generating PDF...' : 'Download PDF'
+        )}
+      </PDFDownloadLink>
+    );
+  }; 
+
   render() {
     const { currentTemplate, updateCurrentTemplate } = this.props;
     // console.log(currentTemplate);
@@ -42,9 +62,12 @@ class Header extends Component {
             </button>
           </div>
           <div className={styles['header-right']} id='downloadPDF'>
-            <button className={styles['header-button']} onClick={this.handleGeneratePDF}>
+            <button className={styles['header-button']} onClick={() => {
+              const resumeElement = document.querySelector('[data-resume]');
+              this.handleGeneratePDF(resumeElement);
+              }}>
               <Icon path={mdiFileDownload} size={1} />
-              Generate PDF
+              {this.handleGeneratePDF()}
             </button>               
           </div>
           <TemplateSelectModal

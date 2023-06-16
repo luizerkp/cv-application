@@ -1,5 +1,5 @@
 import { Component } from "react";
-import styles from "../styles/Education.module.css";
+import styles from "../styles/Template1.module.css";
 
 class Education extends Component {
     render() {
