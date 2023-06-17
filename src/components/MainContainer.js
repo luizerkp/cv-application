@@ -89,7 +89,14 @@ class MainContainer extends Component {
     checkData = (formData, formName) => {
       return this.checkEmptyForm(formData) ? false : this.checkNewData(formData, formName);
     };
-  
+    
+    // when the component mounts on ResumeContainer or when form data is submitted, 
+    // we want to update the resume document on App.js state
+    handleUpdadteResumeDocument = () => {
+      const { updateResumeDocument } = this.props;
+      updateResumeDocument();
+    };
+
     handleFormSubmit = (formData, formName) => {
       this.checkData(formData, formName) && this.setState((prevState) => ({
         masterObject: {
@@ -98,15 +105,17 @@ class MainContainer extends Component {
         },
       }),
         () => {
+          this.handleUpdadteResumeDocument();
           console.log(this.state.masterObject);
         } 
       );
-  
+
       this.handleNextFormClick(formName);
     };
 
     render() {
       const { currentTemplate } = this.props;
+      
       // console.log(currentTemplate);
       // console.log(sampleResume)
         return (
@@ -125,6 +134,7 @@ class MainContainer extends Component {
               // masterObject={this.state.masterObject}
               masterObject={sampleResume}
               currentTemplate={currentTemplate}
+              handleUpdateResumeDocument={ this.handleUpdadteResumeDocument }
             /> 
           </div>
         );

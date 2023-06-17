@@ -13,34 +13,36 @@ class Template1 extends Component {
     const { masterObj } = this.props;
     // console.log(masterObj.contact);
     return(
-      <div className= {styles['template1-main']} data-resume>
-        <ResumeHeader
-          fullName={masterObj.header.fullName}
-          title={masterObj.header.title}
-        />
-        <div className= {styles['resume-body']}>
-          <div className={styles['resume-left']}>
-            <Contact
-              contact={masterObj.contact}
-            />
-            <Skills
-              skills={masterObj.skills}
-            />
-            <Credentials
-              credentials={masterObj.credentials}
-            />
+      <div className= {styles['resume-wrapper']} data-resume> 
+        <div className= {styles['template1-main']} data-resume>
+          <ResumeHeader
+            fullName={masterObj.header.fullName}
+            title={masterObj.header.title}
+          />
+          <div className= {styles['resume-body']}>
+            <div className={styles['resume-left']}>
+              <Contact
+                contact={masterObj.contact}
+              />
+              <Skills
+                skills={masterObj.skills}
+              />
+              <Credentials
+                credentials={masterObj.credentials}
+              />
+            </div>
+            <div className={styles['resume-right']}>
+              <p className={styles['about-me']}>{ masterObj.header.aboutMe }</p>
+              <Experience
+                experience={masterObj.experience}
+              />
+              <Education
+                education={masterObj.education}
+              />               
+            </div>
           </div>
-          <div className={styles['resume-right']}>
-            <p className={styles['about-me']}>{ masterObj.header.aboutMe }</p>
-            <Experience
-              experience={masterObj.experience}
-            />
-            <Education
-              education={masterObj.education}
-            />               
-          </div>
-        </div>
-      </div>      
+        </div> 
+      </div>     
     );
   }
 }

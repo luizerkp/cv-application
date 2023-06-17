@@ -59,18 +59,12 @@
   cursor: pointer;
   transition: all .2s ease-in-out;
 }
-
-.header-button-download-link {
-  color: white;
+a {
   text-decoration: none;
-  transition: all .2s ease-in-out;
+  color: inherit;
 }
 
 .header-button:hover { 
   scale: 1.05;
-  color: black;
-}
-
-.header-button:hover .header-button-download-link {
   color: black;
 }
