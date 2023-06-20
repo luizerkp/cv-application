@@ -4,9 +4,14 @@
   margin: 0;
 }
 .resume-wrapper{
-  margin: 1.5rem;
+  margin: 1rem;
   border-radius: 4px;
-  box-shadow: rgba(14, 30, 37, 0.4) 0px 2px 4px 0px, rgba(14, 30, 37, 0.5) 0px 2px 16px 0px;
+  box-shadow: 
+  rgba(14, 30, 37, 0.4) 
+  0px 2px 4px 0px, 
+  rgba(14, 30, 37, 0.5) 
+  0px 2px 16px 0px;
+  background-color: rgb(12, 12, 12);
 }
 
 .template1-main {
@@ -14,12 +19,11 @@
   grid-template-rows: auto 1fr;
   background-color: #fff;
   font-family: 'Times New Roman', Times, serif;
-  width: 8.5in;
-  height: 11in;
+  width: 612.0pt;
+  height: 792.0pt;
   align-self: center;
   font-size: 11pt;
   color: rgb(0, 0, 0);
-  
 }
 
 .resume-body {

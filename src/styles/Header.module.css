@@ -59,6 +59,7 @@
   cursor: pointer;
   transition: all .2s ease-in-out;
 }
+
 a {
   text-decoration: none;
   color: inherit;

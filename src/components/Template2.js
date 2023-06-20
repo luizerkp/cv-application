@@ -1,5 +1,5 @@
 import { Component } from "react";
-import styles from "../styles/Template1.module.css";
+import styles from "../styles/Template2.module.css";
 import ResumeHeader from "./ResumeHeader";
 import Contact from "./Contact";
 import Skills from "./Skills";
@@ -7,14 +7,14 @@ import Education from "./Education";
 import Credentials from "./Credentials";
 import Experience from "./Experience";
 
-class Template1 extends Component {
+class Template2 extends Component {
   render() {
-    // console.log('Template1 render');
+    // console.log('Template2 render');
     const { masterObj } = this.props;
-    // console.log(masterObj.contact);
+    // console.log(masterObj);
     return(
       <div className= {styles['resume-wrapper']}> 
-        <div className= {styles['template1-main']} data-resume>
+        {/* <div className= {styles['template1-main']} data-resume>
           <ResumeHeader
             fullName={masterObj.header.fullName}
             title={masterObj.header.title}
@@ -41,10 +41,10 @@ class Template1 extends Component {
               />               
             </div>
           </div>
-        </div> 
+        </div>  */}
       </div>     
     );
   }
 }
 
-export default Template1;
+export default Template2;
