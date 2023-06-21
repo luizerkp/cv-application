@@ -9,39 +9,41 @@ import Experience from "./Experience";
 
 class Template2 extends Component {
   render() {
-    // console.log('Template2 render');
     const { masterObj } = this.props;
-    // console.log(masterObj);
     return(
       <div className= {styles['resume-wrapper']}> 
-        {/* <div className= {styles['template1-main']} data-resume>
-          <ResumeHeader
-            fullName={masterObj.header.fullName}
-            title={masterObj.header.title}
-          />
-          <div className= {styles['resume-body']}>
-            <div className={styles['resume-left']}>
+        <div className= {styles['template2-main']} data-resume>
+            <div className={styles['resume-left']}>          
+              <ResumeHeader
+                fullName={masterObj.header.fullName}
+                title={masterObj.header.title}
+                styles = {styles}
+              />
               <Contact
                 contact={masterObj.contact}
+                styles = {styles}
               />
               <Skills
                 skills={masterObj.skills}
+                styles = {styles}
               />
               <Credentials
                 credentials={masterObj.credentials}
+                styles = {styles}
               />
             </div>
             <div className={styles['resume-right']}>
               <p className={styles['about-me']}>{ masterObj.header.aboutMe }</p>
               <Experience
                 experience={masterObj.experience}
+                styles = {styles}
               />
               <Education
                 education={masterObj.education}
+                styles = {styles}
               />               
             </div>
-          </div>
-        </div>  */}
+        </div> 
       </div>     
     );
   }

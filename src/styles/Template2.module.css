@@ -13,3 +13,150 @@
   0px 2px 16px 0px;
   background-color: rgb(12, 12, 12);
 }
+
+.template2-main {
+  display: grid;
+  grid-template-columns: 1fr 2.4fr;
+  background-color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+  width: 612.0pt;
+  height: 792.0pt;
+  align-self: center;
+  font-size: 11pt;
+  color: rgb(0, 0, 0);
+}
+
+.resume-left {
+  display: grid;
+  background-color: rgb(12, 81, 184);
+  grid-template-rows: auto auto auto 1fr;
+  text-align: right;
+  color: white;
+}
+
+.resume-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  padding: 1em;
+}
+
+.resume-left ul {
+  list-style: none;
+}
+
+.name {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+.title { 
+  font-size: 1.4em;
+  margin-bottom: 5px;
+}
+
+.contact, .skills, .credentials {
+  padding: 1.5em 0 0 5px;
+}
+
+.resume-contact-item {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  overflow-wrap: anywhere;
+  margin: 5px 0 0 1em;
+}
+
+.contact div, .skills ul, .credentials ul {
+  padding: 0 1em 0 0;
+  text-align: center;
+}
+
+.contact h2, .skills h2, .credentials h2 {
+  padding: 0 .70em 0 0;
+  background-color:rgba(8, 58, 133, 0.788);
+  text-align: center;
+}
+
+.contact svg {
+  padding: 0;
+}
+
+.skills li, .credentials li {
+  padding: 5px 0 0 0;
+}
+
+.resume-right {
+  display: grid;
+  grid-template-rows: min-content auto 1fr;
+  padding: 1em;
+  gap: .5em;
+}
+
+.about-me {
+  padding-left: .5em;
+  margin-bottom: 1em;
+  margin-top: 1em;
+
+}
+
+.experience-div {
+  display: grid;
+  grid-template-rows: auto;
+  gap: .5em;
+}
+.resume-right h2 {
+  border-top: solid 2px rgb(163, 162, 162);
+  border-bottom: solid 2px rgb(163, 162, 162);
+  color: black;
+  padding-left: .5em;
+  height: fit-content;
+  align-self: center;
+}
+.experience-item {
+  display: flex;
+  flex-direction: column;
+  gap: .20em;
+  padding-left: .5em;
+}
+
+.companyName-location-div {
+  display: flex;
+  gap: .5em;
+  align-items: center;
+}
+
+.job-title {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.company-name {
+  font-size: 1em;
+}
+
+.responsabilities-bulleted {
+  padding-left: 1em;
+}
+
+.responsabilities-not-bulleted {
+  list-style-type: none;
+}
+
+.education-div {
+  display: grid;
+  grid-template-rows: min-content auto;
+  gap: .5em;
+}
+
+.education-item {
+  display: flex;
+  flex-direction: column;
+  gap: .10em;
+  padding-left: .5em;
+}

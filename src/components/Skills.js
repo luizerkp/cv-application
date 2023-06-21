@@ -1,9 +1,8 @@
 import { Component } from "react";
-import styles from "../styles/Template1.module.css";
 
 class Skills extends Component {
   render() {
-    const { skills } = this.props;
+    const { skills, styles } = this.props;
     if (skills.length === 0) return null;
     return (
       <div className={styles['skills']}>

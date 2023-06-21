@@ -18,26 +18,32 @@ class Template1 extends Component {
           <ResumeHeader
             fullName={masterObj.header.fullName}
             title={masterObj.header.title}
+            styles={styles}
           />
           <div className= {styles['resume-body']}>
             <div className={styles['resume-left']}>
               <Contact
                 contact={masterObj.contact}
+                styles={styles}
               />
               <Skills
                 skills={masterObj.skills}
+                styles={styles}
               />
               <Credentials
                 credentials={masterObj.credentials}
+                styles={styles}
               />
             </div>
             <div className={styles['resume-right']}>
               <p className={styles['about-me']}>{ masterObj.header.aboutMe }</p>
               <Experience
                 experience={masterObj.experience}
+                styles={styles}
               />
               <Education
                 education={masterObj.education}
+                styles={styles}
               />               
             </div>
           </div>

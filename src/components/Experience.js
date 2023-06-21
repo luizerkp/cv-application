@@ -1,8 +1,8 @@
 import { Component } from "react";
-import styles from "../styles/Template1.module.css";
 
 class Experience extends Component {
   generateResponsabilitiesUl = (responsabilities) => {
+    const { styles } = this.props;
     const responsabilitiesList = responsabilities.split('\n-');
     const notBulleted = responsabilitiesList.length <= 1 &&
     !responsabilitiesList[0].startsWith("-");
@@ -18,7 +18,7 @@ class Experience extends Component {
   }
 
   render() {
-    const { experience } = this.props;
+    const { experience, styles } = this.props;
     if (experience.length === 0) return null;
     return (
       <div className={styles['experience-div']}>

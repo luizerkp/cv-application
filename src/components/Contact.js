@@ -1,11 +1,15 @@
 import { Component } from 'react';
 import Icon from '@mdi/react';
 import { mdiMapMarkerOutline, mdiCellphone, mdiEmailOutline, mdiLinkedin, mdiGithub, mdiWeb} from '@mdi/js';
-import styles from "../styles/Template1.module.css";
+
 
 class Contact extends Component {
+  
+
   render() {
     const { address, phone, email, linkedin, gitHub, website } = this.props.contact;
+    const { styles } = this.props;
+
     // console.log(this.props.contact);
     return (
       <div className= {styles['contact']}>
