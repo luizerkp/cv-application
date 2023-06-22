@@ -11,7 +11,7 @@ class ResumeContainer extends Component {
   componentDidUpdate() {
     this.props.handleUpdateResumeDocument();
   }
-  
+
   render() {
     const { currentTemplate, masterObject } = this.props;
 
