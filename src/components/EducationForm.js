@@ -3,7 +3,6 @@ import styles from '../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
 import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
-
 class EducationForm extends Component {
   constructor(props) {
     super(props);
@@ -63,7 +62,7 @@ class EducationForm extends Component {
 
   render() {
     const { education } = this.state;
-    // console.log(education);
+
     return (
       <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
         <div>
@@ -132,7 +131,8 @@ class EducationForm extends Component {
           <Icon path={mdiPlus} size={1} />
             Add Education
           </div>
-          {education.length > 1 && ( // Only show remove button if there is at least one skill input
+          {education.length > 1 && (
+            // Only show remove button if there is at least one skill input
             <div className= {styles['remove-div']} 
             datatype="removeEducation" onClick={this.removeEducation}>
               <Icon path={mdiTrashCanOutline} size={1} />

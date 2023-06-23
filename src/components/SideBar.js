@@ -12,6 +12,13 @@ import { mdiAccountDetails,
 const defaultIconSize =1.5;
 
 class SideBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isChecked: false,
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
   handleClick = (formName) => {
       const {activeForm, handleFormClick, handleActiveForm} = this.props;
       if (activeForm === formName) {
@@ -21,7 +28,19 @@ class SideBar extends Component {
       handleFormClick(formName);
       handleActiveForm(formName);
   };
+
+  handleChange() {
+    const {loadSampleResume, unloadSampleResume} = this.props;
+    
+    this.setState(prevState => ({
+      isChecked: !prevState.isChecked
+    }), () => {
+      const { isChecked } = this.state;
+      isChecked ? loadSampleResume() : unloadSampleResume();
+    });
+  }
   render() {
+    const { isChecked } = this.state;
     return (
       <nav className = {styles.sidebar}>
         <div className={styles["sidebar-item"]} datatype='header' data-active
@@ -72,6 +91,14 @@ class SideBar extends Component {
           <Icon path={mdiCheckDecagram } size={defaultIconSize} />
           <p>Credentials</p>
         </div>
+        <div className={styles["sidebar-item-toggle"]}>
+          <p>Sample Resume?</p>
+          <label className={styles['switch']}>
+            <input id="sample-resume" type="checkbox" checked={isChecked} onChange={this.handleChange} />
+            <span className={styles['slider']}></span>
+          </label>
+        </div>
+
       </nav>
     );
   }

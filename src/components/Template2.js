@@ -8,38 +8,43 @@ import Credentials from "./Credentials";
 import Experience from "./Experience";
 
 class Template2 extends Component {
+  // when the component mounts, we want to update the resume document on App.js state
+  componentDidMount() {
+    this.props.handleUpdateResumeDocument();
+  }
+
   render() {
-    const { masterObj } = this.props;
+    const { resumeObject } = this.props;
     return(
       <div className= {styles['resume-wrapper']}> 
         <div className= {styles['template2-main']} data-resume>
             <div className={styles['resume-left']}>          
               <ResumeHeader
-                fullName={masterObj.header.fullName}
-                title={masterObj.header.title}
+                fullName={resumeObject.header.fullName}
+                title={resumeObject.header.title}
                 styles = {styles}
               />
               <Contact
-                contact={masterObj.contact}
+                contact={resumeObject.contact}
                 styles = {styles}
               />
               <Skills
-                skills={masterObj.skills}
+                skills={resumeObject.skills}
                 styles = {styles}
               />
               <Credentials
-                credentials={masterObj.credentials}
+                credentials={resumeObject.credentials}
                 styles = {styles}
               />
             </div>
             <div className={styles['resume-right']}>
-              <p className={styles['about-me']}>{ masterObj.header.aboutMe }</p>
+              <p className={styles['about-me']}>{ resumeObject.header.aboutMe }</p>
               <Experience
-                experience={masterObj.experience}
+                experience={resumeObject.experience}
                 styles = {styles}
               />
               <Education
-                education={masterObj.education}
+                education={resumeObject.education}
                 styles = {styles}
               />               
             </div>

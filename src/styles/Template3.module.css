@@ -1,5 +1,3 @@
-/* Need to update to for Template3 style current style matches Template2 */
-
 /* reset all padding and margin values */
 * {
   padding: 0;
@@ -13,10 +11,10 @@
   0px 2px 4px 0px, 
   rgba(14, 30, 37, 0.5) 
   0px 2px 16px 0px;
-  background-color: rgb(12, 12, 12);
+  height: min-content
 }
 
-.template2-main {
+.template3-main {
   display: grid;
   grid-template-columns: 1fr 2.4fr;
   background-color: #fff;
@@ -26,38 +24,17 @@
   align-self: center;
   font-size: 11pt;
   color: rgb(0, 0, 0);
+  padding: 1.5em;
 }
 
 .resume-left {
   display: grid;
-  background-color: rgb(12, 81, 184);
-  grid-template-rows: auto auto auto 1fr;
+  grid-template-rows: auto auto 1fr;
   text-align: right;
-  color: white;
-}
-
-.resume-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-weight: bold;
-  padding: 1em;
 }
 
 .resume-left ul {
   list-style: none;
-}
-
-.name {
-  font-size: 2em;
-  margin-bottom: 5px;
-}
-
-.title { 
-  font-size: 1.4em;
-  margin-bottom: 5px;
 }
 
 .contact, .skills, .credentials {
@@ -81,7 +58,6 @@
 
 .contact h2, .skills h2, .credentials h2 {
   padding: 0 .70em 0 0;
-  background-color:rgba(8, 58, 133, 0.788);
   text-align: center;
 }
 
@@ -95,9 +71,43 @@
 
 .resume-right {
   display: grid;
-  grid-template-rows: min-content auto 1fr;
+  grid-template-rows: min-content auto auto 1fr;
   padding: 1em;
   gap: .5em;
+}
+.resume-header-wrapper {
+  display: flex;
+  gap: .5em;
+  align-items: center;
+}
+
+.initials {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.resume-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.name {
+  font-size: 2.5em;
+  margin-bottom: 5px;
+}
+
+.title { 
+  font-size: 1.4em;
+  margin-bottom: 5px;
 }
 
 .about-me {
@@ -116,8 +126,7 @@
   border-top: solid 2px rgb(163, 162, 162);
   border-bottom: solid 2px rgb(163, 162, 162);
   color: black;
-  padding-left: .5em;
-  height: fit-content;
+  padding: .2em 0 .2em .3em;
   align-self: center;
 }
 .experience-item {

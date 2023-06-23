@@ -6,42 +6,54 @@ import Skills from "./Skills";
 import Education from "./Education";
 import Credentials from "./Credentials";
 import Experience from "./Experience";
+import getFirstAndNameInitials from "../utils/firstAndLastNameInitials";
 
-// need to update to match Template3 layout current layout matches Template2
 class Template3 extends Component {
+  // when the component mounts, we want to update the resume document on App.js state
+  componentDidMount() {
+    this.props.handleUpdateResumeDocument ();
+  }
+
   render() {
-    const { masterObj } = this.props;
+    const { resumeObject } = this.props;
+    const inititials = resumeObject.header.fullName ? 
+    getFirstAndNameInitials(resumeObject.header.fullName).toUpperCase() : 
+    'FL';
+    
     return(
-      // need to update to match template
       <div className= {styles['resume-wrapper']}> 
-        <div className= {styles['template2-main']} data-resume>
+        <div className= {styles['template3-main']} data-resume>
             <div className={styles['resume-left']}>          
-              <ResumeHeader
-                fullName={masterObj.header.fullName}
-                title={masterObj.header.title}
-                styles = {styles}
-              />
+
               <Contact
-                contact={masterObj.contact}
+                contact={resumeObject.contact}
                 styles = {styles}
               />
               <Skills
-                skills={masterObj.skills}
+                skills={resumeObject.skills}
                 styles = {styles}
               />
               <Credentials
-                credentials={masterObj.credentials}
+                credentials={resumeObject.credentials}
                 styles = {styles}
               />
             </div>
             <div className={styles['resume-right']}>
-              <p className={styles['about-me']}>{ masterObj.header.aboutMe }</p>
+              <div className={styles['resume-header-wrapper']}>
+                <div className={styles['initials']}>{inititials ? inititials : "FL"}</div>
+                <ResumeHeader
+                  fullName={resumeObject.header.fullName}
+                  title={resumeObject.header.title}
+                  styles = {styles}
+                />                
+              </div>
+              <p className={styles['about-me']}>{ resumeObject.header.aboutMe }</p>
               <Experience
-                experience={masterObj.experience}
+                experience={resumeObject.experience}
                 styles = {styles}
               />
               <Education
-                education={masterObj.education}
+                education={resumeObject.education}
                 styles = {styles}
               />               
             </div>

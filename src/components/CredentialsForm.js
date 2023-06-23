@@ -23,11 +23,9 @@ const placeholderCredentials = [
   "Memberships in Professional Organizations"
 ];
 
-
 class CredentialsForm extends Component {
   constructor(props) {
     super(props);
-    // console.log(props.Credentials);
     this.state = {
       credentials: props.credentials || [''],
     };
@@ -55,7 +53,8 @@ class CredentialsForm extends Component {
 
   addCredential = () => {
     this.setState((prevState) => ({
-      credentials: [...prevState.credentials, ''], // Add an empty credential
+      // Add an empty credential
+      credentials: [...prevState.credentials, ''], 
     }));
   };
 
@@ -76,7 +75,7 @@ class CredentialsForm extends Component {
 
   render() {
     const { credentials } = this.state;
-    // console.log(Array.isArray(Credentials));
+
     return (
       <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
         <div className={styles['input-field-group']}>
@@ -102,7 +101,8 @@ class CredentialsForm extends Component {
             <Icon path={mdiPlus} size={1} />  
             Add Credential
           </div>
-          {credentials.length > 1 && ( // Only show remove button if there is at least one credential input
+          {credentials.length > 1 && (
+            // Only show remove button if there is at least one credential input
             <div className= {styles['remove-div']} datatype="removeCredential" onClick={this.removeCredential}>
               <Icon path={mdiTrashCanOutline} size={1} />
               Remove Credential

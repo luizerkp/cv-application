@@ -29,7 +29,6 @@ class ExperienceForm extends Component {
     const { experience } = this.state;
     const updatedExperience = [...experience];
     updatedExperience[idx][name] = value;
-    // console.log(name, value);
     this.setState({
       experience: updatedExperience,
     });
@@ -49,7 +48,8 @@ class ExperienceForm extends Component {
 
   addExperience = () => {
     this.setState((prevState) => ({
-      experience: [...prevState.experience, this.generateEmptyExperience()], // Add an empty experience object
+      // Add an empty experience object
+      experience: [...prevState.experience, this.generateEmptyExperience()], 
     }));
   };
 
@@ -66,6 +66,7 @@ class ExperienceForm extends Component {
 
   render() {
     const { experience } = this.state;
+
     return (
       <form className={styles['form-container']} onSubmit={this.handleSubmit}>
         <div>
@@ -145,7 +146,8 @@ class ExperienceForm extends Component {
             <Icon path={mdiPlus} size={1} />
             Add Experience
           </div>
-          {experience.length > 1 && ( // Only show remove button if there is at least one skill input
+          {experience.length > 1 && (
+            // Only show remove button if there is at least one skill input
             <div className= {styles['remove-div']} datatype="removeExperience" onClick={this.removeExperience}>
               <Icon path={mdiTrashCanOutline} size={1} />
               Remove Experience

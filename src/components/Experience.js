@@ -20,6 +20,7 @@ class Experience extends Component {
   render() {
     const { experience, styles } = this.props;
     if (experience.length === 0) return null;
+    
     return (
       <div className={styles['experience-div']}>
         <h2>Experience</h2>
