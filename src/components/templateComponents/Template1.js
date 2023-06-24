@@ -15,7 +15,6 @@ class Template1 extends Component {
 
   render() {
     const { resumeObject } = this.props;
-    console.log(resumeObject.credentials.length);
     return(
       <div className= {styles['resume-wrapper']}> 
         <div className= {styles['template1-main']} data-resume>
