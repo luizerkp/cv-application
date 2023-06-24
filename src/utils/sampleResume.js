@@ -9,7 +9,7 @@ const sampleResume = {
     phone: "+1 (123) 456-7890",
     email: "johnsmith@email.com",
     linkedin: "linkedin.com/in/johnsmith",
-    gitHub: "github.com/johnsmith",
+    github: "github.com/johnsmith",
     website: "johnsmith.com",
   },
 
@@ -62,6 +62,7 @@ const sampleResume = {
       startDate: "September 2011",
       endDate: "May 2015",
       graduated: true,
+      schoolLocation: "Seattle, WA",
     },
   ],
   skills: ['Product Management', 'Agile Methodology', 'Market Research', 'Data Analysis', 'Project Management'],

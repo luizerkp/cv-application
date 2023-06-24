@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import Template1 from './Template1';
-import Template2 from './Template2';
-import Template3 from './Template3';
+import Template1 from '../templateComponents/Template1';
+import Template2 from '../templateComponents/Template2';
+import Template3 from '../templateComponents/Template3';
 
 class ResumeContainer extends Component {
   render() {

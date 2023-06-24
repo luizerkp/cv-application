@@ -1,12 +1,12 @@
 import { Component } from "react";
-import styles from "../styles/Template3.module.css";
-import ResumeHeader from "./ResumeHeader";
-import Contact from "./Contact";
-import Skills from "./Skills";
-import Education from "./Education";
-import Credentials from "./Credentials";
-import Experience from "./Experience";
-import getFirstAndNameInitials from "../utils/firstAndLastNameInitials";
+import styles from "../../styles/Template3.module.css";
+import ResumeHeader from "../resumeComponents/ResumeHeader";
+import Contact from "../resumeComponents/Contact";
+import Skills from "../resumeComponents/Skills";
+import Education from "../resumeComponents/Education";
+import Credentials from "../resumeComponents/Credentials";
+import Experience from "../resumeComponents/Experience";
+import getFirstAndNameInitials from "../../utils/firstAndLastNameInitials";
 
 class Template3 extends Component {
   // when the component mounts, we want to update the resume document on App.js state

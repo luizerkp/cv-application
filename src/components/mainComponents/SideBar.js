@@ -1,5 +1,5 @@
 import { Component } from "react";
-import styles from "../styles/SideBar.module.css";
+import styles from "../../styles/SideBar.module.css";
 import Icon from '@mdi/react';
 import { mdiAccountDetails,
   mdiCellphone,

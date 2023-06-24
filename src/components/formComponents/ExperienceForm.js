@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import styles from '../styles/ResumeForms.module.css';
+import styles from '../../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
 import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
@@ -23,6 +23,15 @@ class ExperienceForm extends Component {
       responsabilities: "",
     };
   };
+
+  // update state if props change, i.e. if use clicks to load sample resume
+  componentDidUpdate(prevProps) {
+    if (prevProps.experience !== this.props.experience) {
+      this.setState({
+        experience: this.props.experience,
+      });
+    }
+  }
 
   handleInputChange = (event, idx) => {
     const { name, value } = event.target;
@@ -78,7 +87,7 @@ class ExperienceForm extends Component {
                   type="text"
                   id={`experience${idx}`}
                   name= 'company'
-                  value={experienceItem.company}
+                  value={experienceItem.company ?? ''}
                   placeholder="Company Name"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
@@ -89,7 +98,7 @@ class ExperienceForm extends Component {
                   type="text"
                   id={`title${idx}`}
                   name= 'title'
-                  value={experienceItem.title}
+                  value={experienceItem.title ?? ''}
                   placeholder="Job Tittle"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
@@ -100,7 +109,7 @@ class ExperienceForm extends Component {
                   type="text"
                   id={`startDate${idx}`}
                   name= 'startDate'
-                  value={experienceItem.startDate}
+                  value={experienceItem.startDate ?? ''}
                   placeholder="Start Date"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
@@ -111,7 +120,7 @@ class ExperienceForm extends Component {
                   type="text"
                   id={`endDate${idx}`}
                   name= 'endDate'
-                  value={experienceItem.endDate}
+                  value={experienceItem.endDate ?? ''}
                   placeholder="End Date (or Current)"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
@@ -122,7 +131,7 @@ class ExperienceForm extends Component {
                   type="text"
                   id={`companyLocation${idx}`}
                   name= 'companyLocation'
-                  value={experienceItem.companyLocation}
+                  value={experienceItem.companyLocation ?? ''}
                   placeholder="Company Location"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
@@ -133,7 +142,7 @@ class ExperienceForm extends Component {
                   type="text"
                   id={`responsabilities${idx}`}
                   name="responsabilities"
-                  value={experienceItem.responsabilities}
+                  value={experienceItem.responsabilities ?? ''}
                   placeholder= {jobResponsabilitiesPlaceholderText}
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                

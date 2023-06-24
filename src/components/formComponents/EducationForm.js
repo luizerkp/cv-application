@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import styles from '../styles/ResumeForms.module.css';
+import styles from '../../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
 import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
@@ -20,6 +20,15 @@ class EducationForm extends Component {
       schoolLocation: '',
     };
   };
+
+  // update state if props change, i.e. if use clicks to load sample resume
+  componentDidUpdate(prevProps) {
+    if (prevProps.education !== this.props.education) {
+      this.setState({
+        education: this.props.education,
+      });
+    }
+  }
 
   handleInputChange = (event, idx) => {
     const { name } = event.target;
@@ -74,7 +83,7 @@ class EducationForm extends Component {
                   type="text"
                   id={`education${idx}`}
                   name= 'schoolName'
-                  value={school.schoolName}
+                  value={school.schoolName ?? ''}
                   placeholder="School Name"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
@@ -85,7 +94,7 @@ class EducationForm extends Component {
                   type="text"
                   id={`degree${idx}`}
                   name= 'degree'
-                  value={school.degree}
+                  value={school.degree ?? ''}
                   placeholder="Degree"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
@@ -96,7 +105,7 @@ class EducationForm extends Component {
                   type="text"
                   id={`startDate${idx}`}
                   name= 'startDate'
-                  value={school.startDate}
+                  value={school.startDate ?? ''}
                   placeholder="Start Date"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
@@ -107,7 +116,7 @@ class EducationForm extends Component {
                   type="text"
                   id={`endDate${idx}`}
                   name= 'endDate'
-                  value={school.endDate}
+                  value={school.endDate ?? ''}
                   placeholder="End Date"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                
@@ -118,7 +127,7 @@ class EducationForm extends Component {
                   type="text"
                   id={`schoolLocation${idx}`}
                   name= 'schoolLocation'
-                  value={school.schoolLocation}
+                  value={school.schoolLocation ?? ''}
                   placeholder="School Location"
                   onChange={(event) => this.handleInputChange(event, idx)}
                 />                

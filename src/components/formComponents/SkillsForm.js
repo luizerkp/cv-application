@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import styles from '../styles/ResumeForms.module.css';
+import styles from '../../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
 import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
@@ -34,6 +34,15 @@ class SkillsForm extends Component {
       skills: props.skills || [''],
     };
   };
+
+  // update state if props change, i.e. if use clicks to load sample resume
+  componentDidUpdate(prevProps) {
+    if (prevProps.skills !== this.props.skills) {
+      this.setState({
+        skills: this.props.skills,
+      });
+    }
+  }
 
   handleInputChange = (event, idx) => {
     const { value } = event.target;
@@ -78,7 +87,7 @@ class SkillsForm extends Component {
 
   render() {
     const { skills } = this.state;
-    // console.log(Array.isArray(skills));
+
     return (
       <form className={styles['form-container']} onSubmit={this.handleSubmit}>
         <div  className={styles['input-field-group']}>
@@ -89,7 +98,7 @@ class SkillsForm extends Component {
                 type="text"
                 id={`Skill#${idx}`}
                 name={`Skill#${idx}`}
-                value={skill}
+                value={skill ?? ''}
                 placeholder={`e.g. ${this.getRandomPlaceholder()}`}
                 onChange={(e) => {
                   this.handleInputChange(e, idx)

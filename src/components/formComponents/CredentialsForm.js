@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import styles from '../styles/ResumeForms.module.css';
+import styles from '../../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
 import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
@@ -30,6 +30,15 @@ class CredentialsForm extends Component {
       credentials: props.credentials || [''],
     };
   };
+
+  // update state if props change, i.e. if use clicks to load sample resume 
+  componentDidUpdate(prevProps) {
+    if (prevProps.credentials !== this.props.credentials) {
+      this.setState({
+        credentials: this.props.credentials,
+      });
+    }
+  }
 
   handleInputChange = (event, idx) => {
     const { value } = event.target;
@@ -78,6 +87,7 @@ class CredentialsForm extends Component {
 
     return (
       <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
+        <p className={styles['credential-note']}>*Note that credentials will only appear in your template, after you add your first credential</p>
         <div className={styles['input-field-group']}>
           {credentials.map((credential, idx) => (
             <div key={idx}>
@@ -86,7 +96,7 @@ class CredentialsForm extends Component {
                 type="text"
                 id={`credential#${idx}`}
                 name={`credential#${idx}`}
-                value={credential}
+                value={credential ?? ''}
                 placeholder={`e.g. ${this.getRandomPlaceholder()}`}
                 onChange={(e) => {
                   this.handleInputChange(e, idx)

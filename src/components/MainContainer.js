@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import styles from '../styles/MainContainer.module.css';
-import FormContainer from './FormContainer';
-import ResumeContainer from './ResumeContainer';
-import SideBar from './SideBar';
+import FormContainer from './mainComponents/FormContainer';
+import ResumeContainer from './mainComponents/ResumeContainer';
+import SideBar from './mainComponents/SideBar';
 import sampleResume from '../utils/sampleResume';
 import emptyResumeOject from '../utils/resumeObject';
 
@@ -109,7 +109,6 @@ class MainContainer extends Component {
           resumeObject={this.state.resumeObject}
           currentTemplate={currentTemplate}
           handleUpdateResumeDocument={ this.handleUpdadteResumeDocument }
-
         /> 
       </div>
     );

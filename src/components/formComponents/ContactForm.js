@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import styles from '../styles/ResumeForms.module.css';
+import styles from '../../styles/ResumeForms.module.css';
 
 const placeholderContactInfo = {
   address: "City, State Zip",
@@ -21,6 +21,20 @@ class ContactForm extends Component {
       github: props.contact.github,
       website: props.contact.website,
     };
+  }
+
+  // update state if props change, i.e. if use clicks to load sample resume
+  componentDidUpdate(prevProps) {
+    if (prevProps.contact !== this.props.contact) {
+      this.setState({
+        address: this.props.contact.address,
+        phone: this.props.contact.phone,
+        email: this.props.contact.email,
+        linkedin: this.props.contact.linkedin,
+        github: this.props.contact.github,
+        website: this.props.contact.website,
+      });
+    }
   }
 
   handleInputChange = (event) => {
@@ -47,7 +61,7 @@ class ContactForm extends Component {
               type="text"
               id="address"
               name="address"
-              value={address}
+              value={address  ?? ''}
               placeholder= {placeholderContactInfo.address}
               onChange={this.handleInputChange}
             />
@@ -58,7 +72,7 @@ class ContactForm extends Component {
               type="tel"
               id="phone"
               name="phone"
-              value={phone}
+              value={phone  ?? ''}
               placeholder= {placeholderContactInfo.phone}
               onChange={this.handleInputChange}
             />
@@ -69,7 +83,7 @@ class ContactForm extends Component {
               type="email"
               id="email"
               name="email"
-              value={email}
+              value={email  ?? ''}
               placeholder= {placeholderContactInfo.email}
               onChange={this.handleInputChange}
             />
@@ -80,7 +94,7 @@ class ContactForm extends Component {
               type="text"
               id="linkedin"
               name="linkedin"
-              value={linkedin}
+              value={linkedin ?? ''}
               placeholder= {placeholderContactInfo.linkedin}
               onChange={this.handleInputChange}
             />
@@ -91,7 +105,7 @@ class ContactForm extends Component {
               type="text"
               id="github"
               name="github"
-              value={github}
+              value={github ?? ''}
               placeholder= {placeholderContactInfo.github}
               onChange={this.handleInputChange}
             />
@@ -102,7 +116,7 @@ class ContactForm extends Component {
               type="text"
               id="website"
               name="website"
-              value={website}
+              value={website ?? ''}
               placeholder= {placeholderContactInfo.website}
               onChange={this.handleInputChange}
             />

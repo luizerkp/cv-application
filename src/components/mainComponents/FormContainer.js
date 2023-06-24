@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import styles from '../styles/FormContainer.module.css';
-import ContactForm from './ContactForm';
-import ResumeHeaderForm from './ResumeHeaderForm';
-import SkillsForm from './SkillsForm';
-import CredentialsForm from './CredentialsForm';
-import EducationForm from './EducationForm';
-import ExperienceForm from './ExperienceForm';
+import styles from '../../styles/ResumeForms.module.css';
+import ContactForm from '../formComponents/ContactForm';
+import ResumeHeaderForm from '../formComponents/ResumeHeaderForm';
+import SkillsForm from '../formComponents/SkillsForm';
+import CredentialsForm from '../formComponents/CredentialsForm';
+import EducationForm from '../formComponents/EducationForm';
+import ExperienceForm from '../formComponents/ExperienceForm';
 
 // renders the form that is currently active
 class FormContainer extends Component {
