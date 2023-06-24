@@ -12,7 +12,7 @@ class Template1 extends Component {
   componentDidMount() {
     this.props.handleUpdateResumeDocument();
   }
-
+  
   render() {
     const { resumeObject } = this.props;
     return(
