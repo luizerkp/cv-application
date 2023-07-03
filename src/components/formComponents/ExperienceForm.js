@@ -75,7 +75,6 @@ class ExperienceForm extends Component {
 
   render() {
     const { experience } = this.state;
-
     return (
       <form className={styles['form-container']} onSubmit={this.handleSubmit}>
         <div>

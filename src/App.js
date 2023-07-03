@@ -9,7 +9,6 @@ import generatePDFDocument from './utils/GeneratePDFDocument';
 class App extends Component {
   constructor(props) {
     super(props);
-    
     this.state = {
       currentTemplate: 'template1',
       resumeDocument: null,
@@ -29,7 +28,6 @@ class App extends Component {
   
   render() {
     const { currentTemplate, resumeDocument } = this.state;
-
     return (
       <div className="App">
         <Header

@@ -15,7 +15,7 @@
 }
 
 
-.template2-main {
+.template-main {
   display: grid;
   grid-template-columns: 1fr 2.4fr;
   background-color: #fff;

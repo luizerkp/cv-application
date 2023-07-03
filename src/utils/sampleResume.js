@@ -12,7 +12,6 @@ const sampleResume = {
     github: "github.com/johnsmith",
     website: "johnsmith.com",
   },
-
   experience: [
     {
       company: "XYZ Corporation",

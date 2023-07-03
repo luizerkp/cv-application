@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import styles from '../../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
-import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
+import { mdiTrashCanOutline, mdiPlus, mdiEye, mdiEyeOff } from '@mdi/js';
 
 const skillsPlaceholder = [
   "Leadership",
@@ -25,7 +25,6 @@ const skillsPlaceholder = [
   "Attention to detail",
   "Multilingualism"
 ];
-
 
 class SkillsForm extends Component {
   constructor(props) {
@@ -58,7 +57,7 @@ class SkillsForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { skills } = this.state;
-    
+
     // filter out any empty skills
     const formData = skills.filter((skill) => skill !== '');
     this.props.onSubmit(formData);
@@ -66,7 +65,8 @@ class SkillsForm extends Component {
 
   addSkill = () => {
     this.setState((prevState) => ({
-      skills: [...prevState.skills, ''], // Add an empty skill
+      // Add an empty skill
+      skills: [...prevState.skills, ''], 
     }));
   };
 
@@ -85,11 +85,19 @@ class SkillsForm extends Component {
     return skillsPlaceholder[Math.floor(Math.random() * skillsPlaceholder.length)];
   }
 
+  setShowSkills = () => {
+    this.props.updateOptionalComponents('showSkills');
+  }
+
   render() {
     const { skills } = this.state;
-
+    const { showSkills } = this.props;
     return (
       <form className={styles['form-container']} onSubmit={this.handleSubmit}>
+        <p className={styles['show-component']} onClick={this.setShowSkills}>
+          <Icon path={showSkills ? mdiEyeOff : mdiEye} size={1} /> 
+          { showSkills ? "Hide" : "Show" } Skills         
+        </p>        
         <div  className={styles['input-field-group']}>
           {skills.map((skill, idx) => (
             <div key={idx}> 
@@ -100,19 +108,18 @@ class SkillsForm extends Component {
                 name={`Skill#${idx}`}
                 value={skill ?? ''}
                 placeholder={`e.g. ${this.getRandomPlaceholder()}`}
-                onChange={(e) => {
-                  this.handleInputChange(e, idx)
-                }}
+                onChange={(e) => { this.handleInputChange(e, idx) }}
               />
-          </div>
+            </div>
           ))}
         </div>
         <div className= {styles['add-remove-div']}>
           <div className= {styles['add-div']} datatype="addSkill" onClick={this.addSkill}>
-          <Icon path={mdiPlus} size={1} />
+            <Icon path={mdiPlus} size={1} />
             Add Skill
           </div>
-          {skills.length > 1 && ( // Only show remove button if there is at least one skill input
+          {skills.length > 1 && ( 
+            // Only show remove button if there is at least one skill input
             <div className= {styles['remove-div']} 
             datatype="removeSkill" onClick={this.removeSkill}>
               <Icon path={mdiTrashCanOutline} size={1} />

@@ -8,11 +8,15 @@ import emptyResumeOject from '../utils/resumeObject';
 
 class MainContainer extends Component {
   constructor(props) {
-      super(props);
-      this.state = {
-          activeForm: 'header',
-          resumeObject: emptyResumeOject,
-        };
+    super(props);
+    this.state = {
+        activeForm: 'header',
+        resumeObject: emptyResumeOject,
+        optionalComponents: {
+          showSkills: true,
+          showCredentials: true,
+        },
+    };
   }
 
   handleFormClick = (formName) => {
@@ -88,9 +92,17 @@ class MainContainer extends Component {
     this.setState({ resumeObject: emptyResumeOject });
   };
 
+  updateOptionalComponents = (optionalName) => {
+    this.setState((prevState) => ({
+      optionalComponents: {
+        ...prevState.optionalComponents,
+        [optionalName]: !prevState.optionalComponents[optionalName],
+      },
+    }));
+  };
+
   render() {
     const { currentTemplate } = this.props;
-    
     return (
       <div className={styles['main-container']}>
         <SideBar 
@@ -102,13 +114,16 @@ class MainContainer extends Component {
         />
         <FormContainer 
           handleFormSubmit={this.handleFormSubmit}
+          updateOptionalComponents={this.updateOptionalComponents}
           activeForm={this.state.activeForm}
           resumeObject={this.state.resumeObject}
+          optionalComponents={this.state.optionalComponents}
         />
         <ResumeContainer
           resumeObject={this.state.resumeObject}
+          optionalComponents={this.state.optionalComponents}
           currentTemplate={currentTemplate}
-          handleUpdateResumeDocument={ this.handleUpdadteResumeDocument }
+          handleUpdateResumeDocument={this.handleUpdadteResumeDocument}
         /> 
       </div>
     );

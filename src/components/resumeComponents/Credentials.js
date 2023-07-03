@@ -4,7 +4,6 @@ class Credentials extends Component {
   render() {
     const { credentials, styles } = this.props;
     if (credentials.length === 0) return null;
-    
     return (
       <div className={styles['credentials']}>
         <h2>Credentials</h2>

@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import styles from '../../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
-import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
+import { mdiTrashCanOutline, mdiPlus, mdiEye, mdiEyeOff } from '@mdi/js';
 
 const placeholderCredentials = [
   "Certification",
@@ -82,12 +82,20 @@ class CredentialsForm extends Component {
     return placeholderCredentials[Math.floor(Math.random() * placeholderCredentials.length)];
   }
 
+  setShowCredentials = () => {
+    this.props.updateOptionalComponents('showCredentials');
+  }
+
   render() {
-    const { credentials } = this.state;
+    const { credentials} = this.state;
+    const { showCredentials } = this.props;
 
     return (
       <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
-        <p className={styles['credential-note']}>*Note that credentials will only appear in your template, after you add your first credential</p>
+        <p className={styles['show-component']} onClick={this.setShowCredentials}>
+          <Icon path={showCredentials ? mdiEyeOff : mdiEye} size={1} /> 
+          { showCredentials ? "Hide" : "Show" } Credentials         
+        </p>
         <div className={styles['input-field-group']}>
           {credentials.map((credential, idx) => (
             <div key={idx}>
@@ -103,7 +111,6 @@ class CredentialsForm extends Component {
                 }}
               />            
             </div>
-  
           ))}
         </div>
         <div className= {styles['add-remove-div']}>

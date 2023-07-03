@@ -14,10 +14,10 @@ class Template2 extends Component {
   }
 
   render() {
-    const { resumeObject } = this.props;
+    const { resumeObject, optionalComponents } = this.props;
     return(
       <div className= {styles['resume-wrapper']}> 
-        <div className= {styles['template2-main']} data-resume>
+        <div className= {styles['template-main']} data-resume>
             <div className={styles['resume-left']}>          
               <ResumeHeader
                 fullName={resumeObject.header.fullName}
@@ -28,14 +28,14 @@ class Template2 extends Component {
                 contact={resumeObject.contact}
                 styles = {styles}
               />
-              <Skills
+              {optionalComponents.showSkills && <Skills
                 skills={resumeObject.skills}
                 styles = {styles}
-              />
-              <Credentials
+              />}
+             {optionalComponents.showCredentials && <Credentials
                 credentials={resumeObject.credentials}
                 styles = {styles}
-              />
+              />}
             </div>
             <div className={styles['resume-right']}>
               <p className={styles['about-me']}>{ resumeObject.header.aboutMe }</p>

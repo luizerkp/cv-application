@@ -16,6 +16,7 @@ class ResumeHeaderForm extends Component {
         aboutMe: props.header.aboutMe,
       };
   }
+
   // update state if props change, i.e. if use clicks to load sample resume
   componentDidUpdate(prevProps) {
     if (prevProps.header !== this.props.header) {
@@ -31,6 +32,7 @@ class ResumeHeaderForm extends Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
+  
   handleSubmit = (event) => {
     event.preventDefault();
     const { fullName, title, aboutMe } = this.state;

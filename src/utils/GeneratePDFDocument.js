@@ -2,7 +2,6 @@ import React from 'react';
 import { Page, Document, Image} from '@react-pdf/renderer';
 import html2canvas from 'html2canvas';
 
-
 const generateHTMLCanvas = async (element) => {
   const canvas = await html2canvas(element, {
     useCORS: true,
@@ -13,7 +12,6 @@ const generateHTMLCanvas = async (element) => {
 
 const generatePDFDocument = async ({ element }) => {
   const imageData = await generateHTMLCanvas(element);
-
   const MyDocument = (
     <Document>
       <Page size="LETTER">

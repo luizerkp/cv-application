@@ -13,22 +13,21 @@ class Contact extends Component {
   render() {
     const { address, phone, email, linkedin, gitHub, website } = this.props.contact;
     const { styles } = this.props;
-    
     return (
       <div className= {styles['contact']}>
         <h2>Contact</h2>
-        <div className= {styles['resume-contact-item']}>         
+        {address && <div className= {styles['resume-contact-item']}>         
           {address}
           <Icon path={mdiMapMarkerOutline} size={1} />
-        </div>
-        <div className= {styles['resume-contact-item']}>  
+        </div>}
+        {phone && <div className= {styles['resume-contact-item']}>  
           {phone}
           <Icon path={mdiCellphone} size={1} />
-        </div>
-        <div className= {styles['resume-contact-item']}>
+        </div>}
+        {email && <div className= {styles['resume-contact-item']}>
           {email}
           <Icon path={mdiEmailOutline} size={1} />
-        </div>
+        </div>}
         {linkedin && (
         <div className= {styles['resume-contact-item']}>         
           {linkedin}

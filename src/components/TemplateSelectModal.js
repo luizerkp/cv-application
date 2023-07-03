@@ -15,7 +15,6 @@ class TemplateSelectModal extends Component {
   componentDidUpdate() {
     // add event listener if modal is open and clickCount is 0 to account for the first click
     if (this.state.clickCount === 0 && this.props.isOpen) {
-      // console.log("adding event listener");
       document.addEventListener("click", this.handleClickOutside);
     }
   }
@@ -37,16 +36,13 @@ class TemplateSelectModal extends Component {
   handleModalClose = () => {
     const { onClose } = this.props;
     this.setState({ clickCount: 0 });
-    // console.log("removing event listener");
     document.removeEventListener("click", this.handleClickOutside);
     onClose();
   };
 
   render() {
     const { currentTemplate, updateCurrentTemplate, isOpen} = this.props;
-    // console.log(currentTemplate);
     if (!isOpen) return null;
-
     return (
       <div className= {styles.modal}>
         <div className={styles['modal-content']}>

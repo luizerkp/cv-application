@@ -10,8 +10,14 @@ import ExperienceForm from '../formComponents/ExperienceForm';
 // renders the form that is currently active
 class FormContainer extends Component {
   render() {
-    // default activeForm is header, resumeObject is empty, and handleFormSubmit handles the form submit on the parent component
-    const { activeForm, handleFormSubmit, resumeObject } = this.props;
+    // default activeForm is header, resumeObject is empty, and handleFormSubmit handles the form submit on the parent componentactiveForm
+    const { 
+      activeForm, 
+      handleFormSubmit,
+      updateOptionalComponents, 
+      resumeObject,
+      optionalComponents,
+     } = this.props;
 
     // error message to display if the form is not in the forms object
     const erroMessage = 'Something went wrong. Please try again later. If the problem persists, please contact us.';
@@ -32,10 +38,14 @@ class FormContainer extends Component {
         experience={resumeObject.experience}
         onSubmit={(formData) => handleFormSubmit(formData, 'experience')} />,
       skills: () =>  <SkillsForm
-        skills={resumeObject.skills} 
+        skills={resumeObject.skills}
+        showSkills={optionalComponents.showSkills}
+        updateOptionalComponents={updateOptionalComponents}
         onSubmit={(formData) => handleFormSubmit(formData, 'skills')} />,      
       credentials:  () => <CredentialsForm
         credentials={resumeObject.credentials}
+        showCredentials={optionalComponents.showCredentials}
+        updateOptionalComponents={updateOptionalComponents}
         onSubmit={(formData) => handleFormSubmit(formData, 'credentials')} />, 
     };
 

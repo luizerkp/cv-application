@@ -71,7 +71,6 @@ class EducationForm extends Component {
 
   render() {
     const { education } = this.state;
-
     return (
       <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
         <div>

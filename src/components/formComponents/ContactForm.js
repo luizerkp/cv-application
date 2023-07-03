@@ -51,7 +51,6 @@ class ContactForm extends Component {
 
   render() {
     const { address, phone, email, linkedin, github, website } = this.state;
-
     return (
       <form className={styles['form-container']} onSubmit={this.handleSubmit}>
         <div className={styles['input-field-group']}>

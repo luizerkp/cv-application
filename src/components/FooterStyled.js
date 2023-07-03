@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import githubLogo from "../imgs/GitHubMarkSmallLight.png";
 
-// TODO Ads media queries for mobile and tablet
 const FooterContainer = styled.div`
   display: flex;
   justify-content: center;

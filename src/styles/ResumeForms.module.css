@@ -120,9 +120,10 @@
   color: white;
 }
 
-.credential-note {
-  font-size: .95rem;
-  color: #111111;
+.show-component {
+  display: flex;
+  align-items: center;
   font-weight: bold;
-  margin-top: 0.5rem;
+  cursor: pointer;
+  gap: .5rem;
 }

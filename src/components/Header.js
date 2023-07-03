@@ -31,8 +31,8 @@ class Header extends Component {
           <h1 className={styles['gradient-text']}>CV Creator</h1>
         </div>
         <div className={styles['header-middle']}>
-          <button className={styles['header-button']} id='templates' onClick={this.handleModalOpen}
-          >
+          <button className={styles['header-button']} id='templates' 
+          onClick={this.handleModalOpen}>
             <Icon path={mdiFormatListBulleted} size={1} />
             Templates
           </button>
