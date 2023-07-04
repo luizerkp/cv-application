@@ -15,6 +15,7 @@
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "source-map-explorer": "^2.5.3",
     "styled-components": "^5.3.10",
     "web-vitals": "^2.1.4"
   },
@@ -30,7 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "audit-od": "npm audit --omit=dev"
+    "audit-od": "npm audit --omit=dev",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": [

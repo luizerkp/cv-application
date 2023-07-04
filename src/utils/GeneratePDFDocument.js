@@ -12,6 +12,7 @@ const generateHTMLCanvas = async (element) => {
 
 const generatePDFDocument = async ({ element }) => {
   const imageData = await generateHTMLCanvas(element);
+
   const MyDocument = (
     <Document>
       <Page size="LETTER">

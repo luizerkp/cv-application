@@ -85,11 +85,11 @@ class MainContainer extends Component {
   };
 
   loadSampleResume = () => {
-    this.setState({ resumeObject: sampleResume });
+    this.setState({ resumeObject: sampleResume }, () => {this.handleUpdadteResumeDocument()});
   };
 
   unloadSampleResume = () => {
-    this.setState({ resumeObject: emptyResumeOject });
+    this.setState({ resumeObject: emptyResumeOject }, () => {this.handleUpdadteResumeDocument()});
   };
 
   updateOptionalComponents = (optionalName) => {
