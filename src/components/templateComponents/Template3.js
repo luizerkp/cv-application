@@ -7,10 +7,10 @@ import Education from "../resumeComponents/Education";
 import Credentials from "../resumeComponents/Credentials";
 import Experience from "../resumeComponents/Experience";
 
-class Template1 extends Component {
+class Template3 extends Component {
   // when the component mounts, we want to update the resume document on App.js state
   componentDidMount() {
-    this.props.handleUpdateResumeDocument();
+    this.props.updateResumeDocument();
   }
   
   render() {
@@ -57,4 +57,4 @@ class Template1 extends Component {
   }
 }
 
-export default Template1;
+export default Template3;

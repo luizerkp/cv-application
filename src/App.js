@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import './styles/App.css';
 import Header from './components/Header';
 import MainContainer from './components/MainContainer';
@@ -6,44 +6,45 @@ import FooterStyled from './components/FooterStyled';
 import generatePDFDocument from './utils/GeneratePDFDocument';
 
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      currentTemplate: 'template1',
-      resumeDocument: null,
-    };
-  }
+const App = () => {
+  const [currentTemplate, setCurrentTemplate] = useState('template1');
+  const [resumeDocument, setResumeDocument] = useState(null)
+  const [resumeElement, setResumeElement] = useState(null);
+  const [resumeObjectUpdated, setResumeObjectUpdated] = useState(false);
 
-  updateCurrentTemplate = (templateName) => {
-    this.setState({ currentTemplate: templateName });
+  useEffect(() => {
+    setResumeElement(document.querySelector('[data-resume]'));
+  }, []);
+
+  const updateCurrentTemplate = (templateName) => {
+    setCurrentTemplate(templateName)
   };
   
-  updateResumeDocument = () => {
-    const resumeElement = document.querySelector('[data-resume]');
-    generatePDFDocument({ element: resumeElement }).then((resumeDocument) => {
-      this.setState({ resumeDocument });
+useEffect(() => {
+  const updateResumeDocument = () => {
+    generatePDFDocument({ element: resumeElement }).then((updatedResumeDocument) => {
+      setResumeDocument(updatedResumeDocument);
     });
   };
   
-  render() {
-    const { currentTemplate, resumeDocument } = this.state;
-    return (
-      <div className="App">
-        <Header
-          updateCurrentTemplate={this.updateCurrentTemplate}
-          currentTemplate={currentTemplate}
-          resumeDocument={resumeDocument} 
-        />
-        <MainContainer
-          currentTemplate={currentTemplate} 
-          updateResumeDocument={this.updateResumeDocument}
-        />
-        <FooterStyled />
-      </div>
-    );
-  }
+  resumeElement && updateResumeDocument();
+}, [resumeElement]);
+
+  return (
+    <div className="App">
+      <Header
+        updateCurrentTemplate={updateCurrentTemplate}
+        currentTemplate={currentTemplate}
+        resumeDocument={resumeDocument} 
+      />
+      <MainContainer
+        currentTemplate={currentTemplate}
+        setResumeObjectUpdated={setResumeObjectUpdated}
+      />
+      <FooterStyled />
+    </div>
+  );
+  
 }
 
 export default App;

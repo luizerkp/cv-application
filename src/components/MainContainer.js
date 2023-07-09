@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import styles from '../styles/MainContainer.module.css';
 import FormContainer from './mainComponents/FormContainer';
 import ResumeContainer from './mainComponents/ResumeContainer';
@@ -6,33 +6,20 @@ import SideBar from './mainComponents/SideBar';
 import sampleResume from '../utils/sampleResume';
 import emptyResumeOject from '../utils/resumeObject';
 
-class MainContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-        activeForm: 'header',
-        resumeObject: emptyResumeOject,
-        optionalComponents: {
-          showSkills: true,
-          showCredentials: true,
-        },
-    };
-  }
-
-  handleFormClick = (formName) => {
-    this.setState({ activeForm: formName });
-  };
+const MainContainer = (props) => {
+  const { currentTemplate, setResumeObjectUpdated } = props;
+  const [activeForm, setActiveForm] = useState('header');
+  const [resumeObject, setResumeObject] = useState(emptyResumeOject);
+  const [optionalComponents, setOptionalComponents] = useState({
+    showSkills: true,
+    showCredentials: true,
+  });
   
-  handleNextFormClick = (formName) => {
-    const formOrder = ['header', 'contact', 'experience', 'education', 'skills', 'credentials'];
-    const formLength = formOrder.length;
-    const currentIndex = formOrder.indexOf(formName);
-    const nextForm = (currentIndex + 1) < formLength ? formOrder[currentIndex + 1] : formOrder[0];
-    nextForm && this.setState({ activeForm: nextForm });
-    nextForm && this.handleActiveForm(nextForm);
+  const handleFormClick = (formName) => {
+    setActiveForm(formName);
   };
 
-  handleActiveForm = (formName) => {
+  const handleActiveForm = (formName) => {
     const activeElement = document.querySelector('[data-active="true"]');
     if (activeElement) {
       activeElement.removeAttribute('data-active');
@@ -43,7 +30,17 @@ class MainContainer extends Component {
       selectedElement.setAttribute('data-active', true);
     }
   }
-  checkEmptyForm = (formData) => {
+  
+  const handleNextFormClick = (formName) => {
+    const formOrder = ['header', 'contact', 'experience', 'education', 'skills', 'credentials'];
+    const formLength = formOrder.length;
+    const currentIndex = formOrder.indexOf(formName);
+    const nextForm = (currentIndex + 1) < formLength ? formOrder[currentIndex + 1] : formOrder[0];
+    nextForm && setActiveForm(nextForm)
+    nextForm && handleActiveForm(nextForm);
+  };
+
+  const checkEmptyForm = (formData) => {
     if (!formData) return true;
 
     const emptyForm = Array.isArray(formData) ? 
@@ -53,81 +50,61 @@ class MainContainer extends Component {
     return emptyForm;
   };
   
-  checkNewData= (formData, formName) => {
-    return JSON.stringify(formData) !== JSON.stringify(this.state.resumeObject[formName]);
+  const checkNewData= (formData, formName) => {
+    return JSON.stringify(formData) !== JSON.stringify(resumeObject[formName]);
   };
 
-  checkData = (formData, formName) => {
-    return this.checkEmptyForm(formData) ? false : this.checkNewData(formData, formName);
+  const checkData = (formData, formName) => {
+    return checkEmptyForm(formData) ? false : checkNewData(formData, formName);
   };
   
-  // when the component mounts on ResumeContainer or when form data is submitted, 
-  // we want to update the resume document on App.js state
-  handleUpdadteResumeDocument = () => {
-    const { updateResumeDocument } = this.props;
-    updateResumeDocument();
+  const handleFormSubmit = (formData, formName) => {
+    checkData(formData, formName) && setResumeObject((prevResumeObject) => ({
+      ...prevResumeObject,
+      [formName]: formData,
+    }));
+
+    handleNextFormClick(formName);
   };
 
-  handleFormSubmit = (formData, formName) => {
-    this.checkData(formData, formName) && this.setState((prevState) => ({
-      resumeObject: {
-        ...prevState.resumeObject,
-        [formName]: formData,
-      },
-    }),
-      () => {
-        this.handleUpdadteResumeDocument();
-        console.log(this.state.resumeObject);
-      } 
-    );
-
-    this.handleNextFormClick(formName);
+  const loadSampleResume = () => {
+    setResumeObject(sampleResume);
   };
 
-  loadSampleResume = () => {
-    this.setState({ resumeObject: sampleResume }, () => {this.handleUpdadteResumeDocument()});
+  const unloadSampleResume = () => {
+    setResumeObject(emptyResumeOject);
   };
 
-  unloadSampleResume = () => {
-    this.setState({ resumeObject: emptyResumeOject }, () => {this.handleUpdadteResumeDocument()});
-  };
-
-  updateOptionalComponents = (optionalName) => {
-    this.setState((prevState) => ({
-      optionalComponents: {
-        ...prevState.optionalComponents,
-        [optionalName]: !prevState.optionalComponents[optionalName],
-      },
+  const updateOptionalComponents = (optionalName) => {
+    setOptionalComponents((prevOptionalComponents) => ({
+        ...prevOptionalComponents,
+        [optionalName]: !prevOptionalComponents[optionalName],
     }));
   };
 
-  render() {
-    const { currentTemplate } = this.props;
-    return (
-      <div className={styles['main-container']}>
-        <SideBar 
-          activeForm = {this.state.activeForm} 
-          handleFormClick = {this.handleFormClick}
-          handleActiveForm = {this.handleActiveForm}          
-          loadSampleResume={this.loadSampleResume}
-          unloadSampleResume={this.unloadSampleResume}
-        />
-        <FormContainer 
-          handleFormSubmit={this.handleFormSubmit}
-          updateOptionalComponents={this.updateOptionalComponents}
-          activeForm={this.state.activeForm}
-          resumeObject={this.state.resumeObject}
-          optionalComponents={this.state.optionalComponents}
-        />
-        <ResumeContainer
-          resumeObject={this.state.resumeObject}
-          optionalComponents={this.state.optionalComponents}
-          currentTemplate={currentTemplate}
-          handleUpdateResumeDocument={this.handleUpdadteResumeDocument}
-        /> 
-      </div>
-    );
-  }
+  return (
+    <div className={styles['main-container']}>
+      <SideBar 
+        activeForm = {activeForm} 
+        handleFormClick = {handleFormClick}
+        handleActiveForm = {handleActiveForm}          
+        loadSampleResume={loadSampleResume}
+        unloadSampleResume={unloadSampleResume}
+      />
+      <FormContainer 
+        handleFormSubmit={handleFormSubmit}
+        updateOptionalComponents={updateOptionalComponents}
+        activeForm={activeForm}
+        resumeObject={resumeObject}
+        optionalComponents={optionalComponents}
+      />
+      <ResumeContainer
+        resumeObject={resumeObject}
+        optionalComponents={optionalComponents}
+        currentTemplate={currentTemplate}
+      /> 
+    </div>
+  );
 }
 
 export default MainContainer;
