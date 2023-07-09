@@ -9,26 +9,27 @@ import generatePDFDocument from './utils/GeneratePDFDocument';
 const App = () => {
   const [currentTemplate, setCurrentTemplate] = useState('template1');
   const [resumeDocument, setResumeDocument] = useState(null)
-  const [resumeElement, setResumeElement] = useState(null);
-  const [resumeObjectUpdated, setResumeObjectUpdated] = useState(false);
-
-  useEffect(() => {
-    setResumeElement(document.querySelector('[data-resume]'));
-  }, []);
+  const [resumeObject, setResumeObject] = useState(null);
 
   const updateCurrentTemplate = (templateName) => {
     setCurrentTemplate(templateName)
   };
-  
-useEffect(() => {
-  const updateResumeDocument = () => {
-    generatePDFDocument({ element: resumeElement }).then((updatedResumeDocument) => {
-      setResumeDocument(updatedResumeDocument);
+
+  const getResumeObject = (resumeObject) => {
+    setResumeObject(resumeObject);
+  };
+
+  useEffect(() => {
+    const resumeElement = document.querySelector('[data-resume]');
+    if (!resumeElement) return;
+    const updateResumeDocument = () => {
+      generatePDFDocument({ element: resumeElement }).then((updatedResumeDocument) => {
+        setResumeDocument(updatedResumeDocument);
     });
   };
   
-  resumeElement && updateResumeDocument();
-}, [resumeElement]);
+    resumeElement && updateResumeDocument();
+  }, [currentTemplate, resumeObject]);
 
   return (
     <div className="App">
@@ -39,7 +40,7 @@ useEffect(() => {
       />
       <MainContainer
         currentTemplate={currentTemplate}
-        setResumeObjectUpdated={setResumeObjectUpdated}
+        getResumeObject={getResumeObject}
       />
       <FooterStyled />
     </div>

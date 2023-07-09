@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/MainContainer.module.css';
 import FormContainer from './mainComponents/FormContainer';
 import ResumeContainer from './mainComponents/ResumeContainer';
@@ -7,7 +7,7 @@ import sampleResume from '../utils/sampleResume';
 import emptyResumeOject from '../utils/resumeObject';
 
 const MainContainer = (props) => {
-  const { currentTemplate, setResumeObjectUpdated } = props;
+  const { currentTemplate, getResumeObject } = props;
   const [activeForm, setActiveForm] = useState('header');
   const [resumeObject, setResumeObject] = useState(emptyResumeOject);
   const [optionalComponents, setOptionalComponents] = useState({
@@ -81,6 +81,11 @@ const MainContainer = (props) => {
         [optionalName]: !prevOptionalComponents[optionalName],
     }));
   };
+
+  useEffect(() => {
+    getResumeObject(resumeObject);
+  }, [resumeObject, getResumeObject]); 
+
 
   return (
     <div className={styles['main-container']}>
