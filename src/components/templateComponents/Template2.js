@@ -8,10 +8,6 @@ import Credentials from "../resumeComponents/Credentials";
 import Experience from "../resumeComponents/Experience";
 
 class Template2 extends Component {
-  // when the component mounts, we want to update the resume document on App.js state
-  componentDidMount() {
-    this.props.handleUpdateResumeDocument();
-  }
 
   render() {
     const { resumeObject, optionalComponents } = this.props;
