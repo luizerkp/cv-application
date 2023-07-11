@@ -14,7 +14,8 @@ const MainContainer = (props) => {
     showSkills: true,
     showCredentials: true,
   });
-  
+  const [isChecked, setIsChecked] = useState(false);
+
   const handleFormClick = (formName) => {
     setActiveForm(formName);
   };
@@ -86,15 +87,22 @@ const MainContainer = (props) => {
     getResumeObject(resumeObject);
   }, [resumeObject, getResumeObject]); 
 
+  useEffect(() => {
+    if (isChecked) {
+      loadSampleResume();
+    } else {
+      unloadSampleResume();
+    }
+  }, [isChecked]);
 
   return (
     <div className={styles['main-container']}>
       <SideBar 
         activeForm = {activeForm} 
         handleFormClick = {handleFormClick}
-        handleActiveForm = {handleActiveForm}          
-        loadSampleResume={loadSampleResume}
-        unloadSampleResume={unloadSampleResume}
+        handleActiveForm = {handleActiveForm}
+        isChecked = {isChecked}          
+        setIsChecked = {setIsChecked}
       />
       <FormContainer 
         handleFormSubmit={handleFormSubmit}

@@ -45,7 +45,6 @@ const App = () => {
       <FooterStyled />
     </div>
   );
-  
 }
 
 export default App;

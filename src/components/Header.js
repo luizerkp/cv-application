@@ -6,7 +6,8 @@ import Icon from '@mdi/react';
 import TemplateSelectModal from './TemplateSelectModal';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 
-const Header = ({ updateCurrentTemplate, currentTemplate, resumeDocument}) => {
+const Header = (props) => {
+  const { updateCurrentTemplate, currentTemplate, resumeDocument } = props;
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleModalOpen = () => {
