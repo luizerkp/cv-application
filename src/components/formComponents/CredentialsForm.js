@@ -91,7 +91,7 @@ class CredentialsForm extends Component {
     const { showCredentials } = this.props;
 
     return (
-      <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
+      <form className={styles['form-container']}  onSubmit={this.handleSubmit} autoComplete='on'>
         <p className={styles['show-component']} onClick={this.setShowCredentials}>
           <Icon path={showCredentials ? mdiEyeOff : mdiEye} size={1} /> 
           { showCredentials ? "Hide" : "Show" } Credentials         

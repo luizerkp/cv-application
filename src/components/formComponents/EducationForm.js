@@ -1,17 +1,10 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
 import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
-class EducationForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      education: props.education || [ this.generateEmptyEducation() ],
-    };
-  };
-
-  generateEmptyEducation() {
+const EducationForm = ({ education, onSubmit }) => {
+  const generateEmptyEducation = () => {
     return {
       schoolName: '',
       degree: '',
@@ -21,137 +14,131 @@ class EducationForm extends Component {
     };
   };
 
+  const [newEducation, setNewEducation] = useState(education || [generateEmptyEducation()]);
+
   // update state if props change, i.e. if use clicks to load sample resume
-  componentDidUpdate(prevProps) {
-    if (prevProps.education !== this.props.education) {
-      this.setState({
-        education: this.props.education,
-      });
-    }
-  }
+  useEffect(() => {
+    setNewEducation(newEducation);
+  }, [newEducation]);
 
-  handleInputChange = (event, idx) => {
-    const { name } = event.target;
-    const { education } = this.state;
-    const updatedEducation = [...education];
-    updatedEducation[idx][name] = event.target.value;
+  const handleInputChange = (event, idx) => {
+    const { name, value} = event.target;
+    const updatedEducation = [...newEducation];
+    updatedEducation[idx][name] = value;
 
-    this.setState({
-      education: updatedEducation,
+    setNewEducation({
+      newEducation: updatedEducation,
     });
   };
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { education } = this.state;
 
     // filter out any empty education objects
-    const formData = education.filter((educationItem) =>
-      Object.values(educationItem).every((value) => value !== "")
+    const formData = newEducation.filter((newEducationItem) =>
+      Object.values(newEducationItem).every((value) => value !== "")
     );
-    this.props.onSubmit(formData);
+    onSubmit(formData);
   };
 
-  addEducation = () => {
-    this.setState((prevState) => ({
-      education: [...prevState.education, this.generateEmptyEducation()], // Add an empty education object
+  const addEducation = () => {
+    setNewEducation((prevState) => ({
+      // Add an empty education object
+      newEducation: [...prevState.newEducation, generateEmptyEducation()], 
     }));
   };
 
-  removeEducation = () => {
-    this.setState((prevState) => {
-      const updatedEducation = [...prevState.education];
+  const removeEducation = () => {
+    setNewEducation((prevState) => {
+      const updatedEducation = [...prevState.newEducation];
       updatedEducation.pop();
 
       return {
-        education: updatedEducation,
+        newEducation: updatedEducation,
       };
     });
   };
 
-  render() {
-    const { education } = this.state;
-    return (
-      <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
-        <div>
-          {education.map((school, idx) => (
-            <div className={styles['input-field-group']} key={idx}>
-              <div>
-                <label htmlFor={`education${idx}`}>School:</label>
-                <input
-                  type="text"
-                  id={`education${idx}`}
-                  name= 'schoolName'
-                  value={school.schoolName ?? ''}
-                  placeholder="School Name"
-                  onChange={(event) => this.handleInputChange(event, idx)}
-                />                
-              </div>
-              <div>
-                <label htmlFor={`degree${idx}`}>Degree or Diploma:</label>
-                <input
-                  type="text"
-                  id={`degree${idx}`}
-                  name= 'degree'
-                  value={school.degree ?? ''}
-                  placeholder="Degree"
-                  onChange={(event) => this.handleInputChange(event, idx)}
-                />                
-              </div>
-              <div>
-                <label htmlFor={`startDate${idx}`}>Start Date:</label>
-                <input
-                  type="text"
-                  id={`startDate${idx}`}
-                  name= 'startDate'
-                  value={school.startDate ?? ''}
-                  placeholder="Start Date"
-                  onChange={(event) => this.handleInputChange(event, idx)}
-                />                
-              </div>
-              <div>
-                <label htmlFor={`endDate${idx}`}>End Date:</label>
-                <input
-                  type="text"
-                  id={`endDate${idx}`}
-                  name= 'endDate'
-                  value={school.endDate ?? ''}
-                  placeholder="End Date"
-                  onChange={(event) => this.handleInputChange(event, idx)}
-                />                
-              </div>
-              <div>
-                <label htmlFor={`endDate${idx}`}>School Location</label>
-                <input
-                  type="text"
-                  id={`schoolLocation${idx}`}
-                  name= 'schoolLocation'
-                  value={school.schoolLocation ?? ''}
-                  placeholder="School Location"
-                  onChange={(event) => this.handleInputChange(event, idx)}
-                />                
-              </div>
+  return (
+    <form className={styles['form-container']}  onSubmit={handleSubmit} autoComplete='on'>
+      <div>
+        {newEducation.map((school, idx) => (
+          <div className={styles['input-field-group']} key={idx}>
+            <div>
+              <label htmlFor={`newEducation${idx}`}>School:</label>
+              <input
+                type="text"
+                id={`newEducation${idx}`}
+                name= 'schoolName'
+                value={school.schoolName ?? ''}
+                placeholder="School Name"
+                onChange={(event) => handleInputChange(event, idx)}
+              />                
             </div>
-          ))}
-        </div>
-        <div className= {styles['add-remove-div']}>
-          <div className= {styles['add-div']} datatype="addEducation" onClick={this.addEducation}>
-          <Icon path={mdiPlus} size={1} />
-            Add Education
+            <div>
+              <label htmlFor={`degree${idx}`}>Degree or Diploma:</label>
+              <input
+                type="text"
+                id={`degree${idx}`}
+                name= 'degree'
+                value={school.degree ?? ''}
+                placeholder="Degree"
+                onChange={(event) => handleInputChange(event, idx)}
+              />                
+            </div>
+            <div>
+              <label htmlFor={`startDate${idx}`}>Start Date:</label>
+              <input
+                type="text"
+                id={`startDate${idx}`}
+                name= 'startDate'
+                value={school.startDate ?? ''}
+                placeholder="Start Date"
+                onChange={(event) => handleInputChange(event, idx)}
+              />                
+            </div>
+            <div>
+              <label htmlFor={`endDate${idx}`}>End Date:</label>
+              <input
+                type="text"
+                id={`endDate${idx}`}
+                name= 'endDate'
+                value={school.endDate ?? ''}
+                placeholder="End Date"
+                onChange={(event) => handleInputChange(event, idx)}
+              />                
+            </div>
+            <div>
+              <label htmlFor={`endDate${idx}`}>School Location</label>
+              <input
+                type="text"
+                id={`schoolLocation${idx}`}
+                name= 'schoolLocation'
+                value={school.schoolLocation ?? ''}
+                placeholder="School Location"
+                onChange={(event) => handleInputChange(event, idx)}
+              />                
+            </div>
           </div>
-          {education.length > 1 && (
-            // Only show remove button if there is at least one skill input
-            <div className= {styles['remove-div']} 
-            datatype="removeEducation" onClick={this.removeEducation}>
-              <Icon path={mdiTrashCanOutline} size={1} />
-              Remove Education
-            </div>
-          )}
+        ))}
+      </div>
+      <div className= {styles['add-remove-div']}>
+        <div className= {styles['add-div']} datatype="addEducation" onClick={addEducation}>
+        <Icon path={mdiPlus} size={1} />
+          Add Education
         </div>
-        <button type="submit">Continue</button>
-      </form>
-    );
-  }
+        {newEducation.length > 1 && (
+          // Only show remove button if there is at least one skill input
+          <div className= {styles['remove-div']} 
+          datatype="removeEducation" onClick={removeEducation}>
+            <Icon path={mdiTrashCanOutline} size={1} />
+            Remove Education
+          </div>
+        )}
+      </div>
+      <button type="submit">Continue</button>
+    </form>
+  );
 }
 
 export default EducationForm;
