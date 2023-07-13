@@ -3,7 +3,7 @@ import styles from '../../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
 import { mdiTrashCanOutline, mdiPlus } from '@mdi/js';
 
-const EducationForm = ({ education, onSubmit }) => {
+const EducationForm = (props) => {
   const generateEmptyEducation = () => {
     return {
       schoolName: '',
@@ -14,61 +14,56 @@ const EducationForm = ({ education, onSubmit }) => {
     };
   };
 
-  const [newEducation, setNewEducation] = useState(education || [generateEmptyEducation()]);
+  const [education, setEducation] = useState(props.education || [generateEmptyEducation()]);
 
   // update state if props change, i.e. if use clicks to load sample resume
   useEffect(() => {
-    setNewEducation(newEducation);
-  }, [newEducation]);
+    setEducation(props.education);
+  }, [props.education]);
 
   const handleInputChange = (event, idx) => {
     const { name, value} = event.target;
-    const updatedEducation = [...newEducation];
+    const updatedEducation = [...education];
     updatedEducation[idx][name] = value;
-
-    setNewEducation({
-      newEducation: updatedEducation,
-    });
+    setEducation(updatedEducation);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     // filter out any empty education objects
-    const formData = newEducation.filter((newEducationItem) =>
-      Object.values(newEducationItem).every((value) => value !== "")
+    const formData = education.filter((educationItem) =>
+      Object.values(educationItem).every((value) => value !== "")
     );
-    onSubmit(formData);
+
+    props.onSubmit(formData);
   };
 
   const addEducation = () => {
-    setNewEducation((prevState) => ({
+    setEducation((prevState) => {
       // Add an empty education object
-      newEducation: [...prevState.newEducation, generateEmptyEducation()], 
-    }));
+      return [...prevState, generateEmptyEducation()]; 
+    });
   };
 
   const removeEducation = () => {
-    setNewEducation((prevState) => {
-      const updatedEducation = [...prevState.newEducation];
+    setEducation((prevState) => {
+      const updatedEducation = [...prevState.education];
       updatedEducation.pop();
-
-      return {
-        newEducation: updatedEducation,
-      };
+      return updatedEducation;
     });
   };
 
   return (
     <form className={styles['form-container']}  onSubmit={handleSubmit} autoComplete='on'>
       <div>
-        {newEducation.map((school, idx) => (
+        {education.map((school, idx) => (
           <div className={styles['input-field-group']} key={idx}>
             <div>
-              <label htmlFor={`newEducation${idx}`}>School:</label>
+              <label htmlFor={`education${idx}`}>School:</label>
               <input
                 type="text"
-                id={`newEducation${idx}`}
+                id={`education${idx}`}
                 name= 'schoolName'
                 value={school.schoolName ?? ''}
                 placeholder="School Name"
@@ -127,7 +122,7 @@ const EducationForm = ({ education, onSubmit }) => {
         <Icon path={mdiPlus} size={1} />
           Add Education
         </div>
-        {newEducation.length > 1 && (
+        {education.length > 1 && (
           // Only show remove button if there is at least one skill input
           <div className= {styles['remove-div']} 
           datatype="removeEducation" onClick={removeEducation}>

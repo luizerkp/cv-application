@@ -44,7 +44,6 @@ const ExperienceForm = (props) => {
 
   const addExperience = () => {
     setExperience((prevState) => {
-      console.log(prevState);
       // Add an empty experience object
       return [...prevState, generateEmptyExperience()];
     });
@@ -59,7 +58,6 @@ const ExperienceForm = (props) => {
   };
 
   return (
-    console.log(experience),
     <form className={styles['form-container']} onSubmit={handleSubmit} autoComplete='on'>
       <div>
         {experience.map((experienceItem, idx) => (

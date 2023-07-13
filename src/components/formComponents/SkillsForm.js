@@ -26,23 +26,20 @@ const skillsPlaceholder = [
   "Multilingualism"
 ];
 
-const SkillsForm = ({ skills, onSubmit, updateOptionalComponents, showSkills }) => {
+const SkillsForm = (props) => {
+  const { skills, onSubmit, updateOptionalComponents, showSkills } = props;
   const [newSkills, setNewSkills] = useState(skills || ['']);
 
   // update state if props change, i.e. if use clicks to load sample resume
   useEffect(() => {
-    setNewSkills(newSkills);
-  }, [newSkills]);
+    setNewSkills(skills);
+  }, [skills]);
 
   const handleInputChange = (event, idx) => {
     const { value } = event.target;
-    setNewSkills((prevState) => {
-      const updatedSkills = [...prevState.newSkills];
-      updatedSkills[idx] = value;
-      return {
-        newSkills: updatedSkills,
-      };
-    });
+    const updatedSkills = [...newSkills];
+    updatedSkills[idx] = value;
+    setNewSkills(updatedSkills);
   };
 
   const handleSubmit = (event) => {
@@ -54,20 +51,17 @@ const SkillsForm = ({ skills, onSubmit, updateOptionalComponents, showSkills }) 
   };
 
   const addSkill = () => {
-    setNewSkills((prevState) => ({
+    setNewSkills((prevState) => {
       // Add an empty skill
-      newSkills: [...prevState.newSkills, ''], 
-    }));
+      return [...prevState, ''];
+    });
   };
 
   const removeSkill = () => {
     setNewSkills((prevState) => {
-      const updatedSkills = [...prevState.newSkills];
+      const updatedSkills = [...prevState];
       updatedSkills.pop();
-
-      return {
-        newSkills: updatedSkills,
-      };
+      return updatedSkills;
     });
   };
 
