@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import styled from "styled-components";
 import githubLogo from "../imgs/GitHubMarkSmallLight.png";
 
@@ -7,7 +6,7 @@ const FooterContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  height: 2.5rem;
+  height: 2rem;
   gap: 8px;
   font-weight: bold;
   color: white;
@@ -28,28 +27,22 @@ const GitHubLogo = styled.img`
   padding-right: 8px;
 `;
 
-class Footer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      date: new Date().getFullYear()
-    };
-  }
 
-  render() {
-    return (
-      <FooterContainer>
-        <GradientText>
-          Copyright © {this.state.date}
-          Luis Tamarez
-        </GradientText>
-        <a href="https://github.com/luizerkp" target="_blank" rel="noopener noreferrer">
-          <GitHubLogo src={githubLogo} alt="GitHub logo" />
-        </a>
-        <GradientText>All Rights Reserved</GradientText>
-      </FooterContainer>
-    );
-  }
-}
+const Footer = () => {
+  const year = new Date().getFullYear();
+
+  return (
+    <FooterContainer>
+      <GradientText>
+        Copyright © {year}
+        Luis Tamarez
+      </GradientText>
+      <a href="https://github.com/luizerkp" target="_blank" rel="noopener noreferrer">
+        <GitHubLogo src={githubLogo} alt="GitHub logo" />
+      </a>
+      <GradientText>All Rights Reserved</GradientText>
+    </FooterContainer>
+  );
+};
 
 export default Footer;

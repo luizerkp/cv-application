@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../../styles/ResumeForms.module.css';
 import Icon from '@mdi/react';
 import { mdiTrashCanOutline, mdiPlus, mdiEye, mdiEyeOff } from '@mdi/js';
@@ -23,113 +23,92 @@ const placeholderCredentials = [
   "Memberships in Professional Organizations"
 ];
 
-class CredentialsForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      credentials: props.credentials || [''],
-    };
-  };
+const CredentialsForm = (props) => {
+  const { credentials, onSubmit, updateOptionalComponents, showCredentials } = props;
+  const [newCredentials, setNewCredentials] = useState(credentials || ['']);
 
   // update state if props change, i.e. if use clicks to load sample resume 
-  componentDidUpdate(prevProps) {
-    if (prevProps.credentials !== this.props.credentials) {
-      this.setState({
-        credentials: this.props.credentials,
-      });
-    }
-  }
+  useEffect(() => {
+    setNewCredentials(credentials);
+  }, [credentials]);
 
-  handleInputChange = (event, idx) => {
+  const handleInputChange = (event, idx) => {
     const { value } = event.target;
-    this.setState((prevState) => {
-      const updatedCredentials = [...prevState.credentials];
-      updatedCredentials[idx] = value;
-      return {
-        credentials: updatedCredentials,
-      };
-    });
+    const updatedCredentials = [...newCredentials];
+    updatedCredentials[idx] = value;
+    setNewCredentials(updatedCredentials);
   };
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { credentials } = this.state;
 
     // filter out any empty credentials
-    const formData = credentials.filter((credential) => credential !== '');
-    this.props.onSubmit(formData);
+    const formData = newCredentials.filter((newCredential) => newCredential !== '');
+    onSubmit(formData);
   };
 
-  addCredential = () => {
-    this.setState((prevState) => ({
+  const addCredential = () => {
+    setNewCredentials((prevState) => {
       // Add an empty credential
-      credentials: [...prevState.credentials, ''], 
-    }));
-  };
-
-  removeCredential = () => {
-    this.setState((prevState) => {
-      const updatedCredentials = [...prevState.credentials];
-      updatedCredentials.pop();
-
-      return {
-        credentials: updatedCredentials,
-      };
+      return [...prevState, '']; 
     });
   };
 
-  getRandomPlaceholder() {
+  const removeCredential = () => {
+    setNewCredentials((prevState) => {
+      const updatedCredentials = [...prevState];
+      updatedCredentials.pop();
+      return updatedCredentials;
+    });
+  };
+
+  const getRandomPlaceholder = () => {
     return placeholderCredentials[Math.floor(Math.random() * placeholderCredentials.length)];
   }
 
-  setShowCredentials = () => {
-    this.props.updateOptionalComponents('showCredentials');
+  const setShowCredentials = () => {
+    updateOptionalComponents('showCredentials');
   }
 
-  render() {
-    const { credentials} = this.state;
-    const { showCredentials } = this.props;
-
-    return (
-      <form className={styles['form-container']}  onSubmit={this.handleSubmit}>
-        <p className={styles['show-component']} onClick={this.setShowCredentials}>
-          <Icon path={showCredentials ? mdiEyeOff : mdiEye} size={1} /> 
-          { showCredentials ? "Hide" : "Show" } Credentials         
-        </p>
-        <div className={styles['input-field-group']}>
-          {credentials.map((credential, idx) => (
-            <div key={idx}>
-              <label htmlFor={`credential#${idx}`}>Credential {idx + 1}</label> 
-              <input
-                type="text"
-                id={`credential#${idx}`}
-                name={`credential#${idx}`}
-                value={credential ?? ''}
-                placeholder={`e.g. ${this.getRandomPlaceholder()}`}
-                onChange={(e) => {
-                  this.handleInputChange(e, idx)
-                }}
-              />            
-            </div>
-          ))}
-        </div>
-        <div className= {styles['add-remove-div']}>
-          <div className= {styles['add-div']} datatype="addCredential" onClick={this.addCredential}>
-            <Icon path={mdiPlus} size={1} />  
-            Add Credential
+  return (
+    <form className={styles['form-container']}  onSubmit={handleSubmit} autoComplete='on'>
+      <p className={styles['show-component']} onClick={setShowCredentials}>
+        <Icon path={showCredentials ? mdiEyeOff : mdiEye} size={1} /> 
+        { showCredentials ? "Hide" : "Show" } Credentials         
+      </p>
+      <div className={styles['input-field-group']}>
+        {newCredentials.map((credential, idx) => (
+          <div key={idx}>
+            <label htmlFor={`credential#${idx}`}>Credential {idx + 1}</label> 
+            <input
+              type="text"
+              id={`credential#${idx}`}
+              name={`credential#${idx}`}
+              value={credential ?? ''}
+              placeholder={`e.g. ${getRandomPlaceholder()}`}
+              onChange={(e) => {
+                handleInputChange(e, idx);
+              }}
+            />            
           </div>
-          {credentials.length > 1 && (
-            // Only show remove button if there is at least one credential input
-            <div className= {styles['remove-div']} datatype="removeCredential" onClick={this.removeCredential}>
-              <Icon path={mdiTrashCanOutline} size={1} />
-              Remove Credential
-            </div>
-          )}
+        ))}
+      </div>
+      <div className= {styles['add-remove-div']}>
+        <div className= {styles['add-div']} datatype="addCredential" onClick={addCredential}>
+          <Icon path={mdiPlus} size={1} />  
+          Add Credential
         </div>
-        <button type="submit">Continue</button>
-      </form>
-    );
-  }
+        {newCredentials.length > 1 && (
+          // Only show remove button if there is at least one credential input
+          <div className= {styles['remove-div']} datatype="removeCredential" onClick={removeCredential}>
+            <Icon path={mdiTrashCanOutline} size={1} />
+            Remove Credential
+          </div>
+        )}
+      </div>
+      <button type="submit">Continue</button>
+    </form>
+  );
 }
 
 export default CredentialsForm;

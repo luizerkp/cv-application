@@ -1,130 +1,128 @@
-import { Component } from 'react';
+import { useState, useEffect } from 'react';
 import styles from '../../styles/ResumeForms.module.css';
 
-const placeholderContactInfo = {
-  address: "City, State Zip",
-  phone: "###-###-####",
-  email: "youremail@hotmail.com",
-  linkedin: "linkedin.com/in/yourname",
-  github: "github.com/yourname",
-  website: "www.yourwebsite.com",
-};
+const ContactForm = ({ contact, onSubmit }) => {
+  const [address, setAddress] = useState(contact.address ?? '');
+  const [phone, setPhone] = useState(contact.phone ?? '');
+  const [email, setEmail] = useState(contact.email ?? '');
+  const [linkedin, setLinkedin] = useState(contact.linkedin ?? '');
+  const [github, setGithub] = useState(contact.github ?? '');
+  const [website, setWebsite] = useState(contact.website ?? '');
 
-class ContactForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      address: props.contact.address,
-      phone: props.contact.phone,
-      email: props.contact.email,
-      linkedin: props.contact.linkedin,
-      github: props.contact.github,
-      website: props.contact.website,
-    };
-  }
+  useEffect(() => {
+    setAddress(contact.address ?? '');
+    setPhone(contact.phone ?? '');
+    setEmail(contact.email ?? '');
+    setLinkedin(contact.linkedin ?? '');
+    setGithub(contact.github ?? '');
+    setWebsite(contact.website ?? '');
+  }, [contact]);
 
-  // update state if props change, i.e. if use clicks to load sample resume
-  componentDidUpdate(prevProps) {
-    if (prevProps.contact !== this.props.contact) {
-      this.setState({
-        address: this.props.contact.address,
-        phone: this.props.contact.phone,
-        email: this.props.contact.email,
-        linkedin: this.props.contact.linkedin,
-        github: this.props.contact.github,
-        website: this.props.contact.website,
-      });
-    }
-  }
-
-  handleInputChange = (event) => {
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    switch (name) {
+      case 'address':
+        setAddress(value);
+        break;
+      case 'phone':
+        setPhone(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'linkedin':
+        setLinkedin(value);
+        break;
+      case 'github':
+        setGithub(value);
+        break;
+      case 'website':
+        setWebsite(value);
+        break;
+      default:
+        break;
+    }
   };
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { address, phone, email, linkedin, github, website } = this.state;
     const formData = { address, phone, email, linkedin, github, website };
-    this.props.onSubmit(formData);
+    onSubmit(formData);
   };
 
-  render() {
-    const { address, phone, email, linkedin, github, website } = this.state;
-    return (
-      <form className={styles['form-container']} onSubmit={this.handleSubmit}>
-        <div className={styles['input-field-group']}>
-          <div>
-            <label htmlFor="address">Address:</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              value={address  ?? ''}
-              placeholder= {placeholderContactInfo.address}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="phone">Phone:</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={phone  ?? ''}
-              placeholder= {placeholderContactInfo.phone}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={email  ?? ''}
-              placeholder= {placeholderContactInfo.email}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="linkedin">LinkedIn <span>(optional)</span>:</label>
-            <input
-              type="text"
-              id="linkedin"
-              name="linkedin"
-              value={linkedin ?? ''}
-              placeholder= {placeholderContactInfo.linkedin}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="github">GitHub <span>(optional)</span>:</label>
-            <input
-              type="text"
-              id="github"
-              name="github"
-              value={github ?? ''}
-              placeholder= {placeholderContactInfo.github}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="website">Website <span>(optional)</span>:</label>
-            <input
-              type="text"
-              id="website"
-              name="website"
-              value={website ?? ''}
-              placeholder= {placeholderContactInfo.website}
-              onChange={this.handleInputChange}
-            />
-          </div>     
+  return (
+    <form className={styles['form-container']} onSubmit={handleSubmit} autoComplete='on'>
+      <div className={styles['input-field-group']}>
+        <div>
+          <label htmlFor="address">Address:</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            value={address}
+            placeholder="Enter your address"
+            onChange={handleInputChange}
+          />
         </div>
-        <button type="submit">Continue</button>
-      </form>
-    );
-  }
-}
+        <div>
+          <label htmlFor="phone">Phone:</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            value={phone}
+            placeholder="Enter your phone number"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            placeholder="Enter your email address"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="linkedin">LinkedIn:</label>
+          <input
+            type="text"
+            id="linkedin"
+            name="linkedin"
+            value={linkedin}
+            placeholder="Enter your LinkedIn profile URL"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="github">GitHub:</label>
+          <input
+            type="text"
+            id="github"
+            name="github"
+            value={github}
+            placeholder="Enter your GitHub profile URL"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="website">Website:</label>
+          <input
+            type="text"
+            id="website"
+            name="website"
+            value={website}
+            placeholder="Enter your personal website URL"
+            onChange={handleInputChange}
+          />
+        </div>
+      </div>
+      <button type="submit">Continue</button>
+    </form>
+  );
+};
 
 export default ContactForm;
