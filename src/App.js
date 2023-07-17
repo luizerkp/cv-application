@@ -22,8 +22,8 @@ const App = () => {
   useEffect(() => {
     const resumeElement = document.querySelector('[data-resume]');
     if (!resumeElement) return;
-    const updateResumeDocument = () => {
-      generatePDFDocument({ element: resumeElement }).then((updatedResumeDocument) => {
+    const updateResumeDocument = async () => {
+      await generatePDFDocument({ element: resumeElement }).then((updatedResumeDocument) => {
         setResumeDocument(updatedResumeDocument);
     });
   };
