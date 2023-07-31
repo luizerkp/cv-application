@@ -5,10 +5,11 @@ import Skills from "../resumeComponents/Skills";
 import Education from "../resumeComponents/Education";
 import Credentials from "../resumeComponents/Credentials";
 import Experience from "../resumeComponents/Experience";
+import { memo } from 'react';
 
 const Template3 = (props) => {
   const { resumeObject, optionalComponents } = props;
-  
+
   return(
     <div className= {styles['resume-wrapper']}> 
       <div className= {styles['template-main']} data-resume>
@@ -49,4 +50,4 @@ const Template3 = (props) => {
   );
 }
 
-export default Template3;
+export default memo(Template3);

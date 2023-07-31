@@ -6,6 +6,7 @@ import Education from "../resumeComponents/Education";
 import Credentials from "../resumeComponents/Credentials";
 import Experience from "../resumeComponents/Experience";
 import getFirstAndNameInitials from "../../utils/firstAndLastNameInitials";
+import { memo } from 'react';
 
 const Template1 = (props) => {  
   const { resumeObject, optionalComponents } = props;
@@ -54,4 +55,4 @@ const Template1 = (props) => {
   );
 }
 
-export default Template1;
+export default memo(Template1);
